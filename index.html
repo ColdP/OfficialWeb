@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0M_P</title>
+    <style>
+@font-face {
+    font-family: 'OPPOSans';
+    src: url('./fonts/OPPOSans/OPPOSans-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'OPPOSans';
+    src: url('./fonts/OPPOSans/OPPOSans-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'OPPOSans';
+    src: url('./fonts/OPPOSans/OPPOSans-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #000000;
+            --header-footer-bg: #f0f0f0;
+            --container-bg: #ffffff;
+            --box-shadow: rgba(0, 0, 0, 0.1);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #121212;
+                --text-color: #e0e0e0;
+                --header-footer-bg: #2e2e2e;
+                --container-bg: #1e1e1e;
+                --box-shadow: rgba(0, 0, 0, 0.5);
+            }
+        }
+
+        body {
+            font-family: 'OPPOSans', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+        header, footer {
+            background-color: var(--header-footer-bg);
+            color: var(--text-color);
+            text-align: center;
+            padding: 20px 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background: var(--container-bg);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px var(--box-shadow);
+        }
+        .profile {
+            text-align: center;
+        }
+        .profile img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .works {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .work {
+            text-align: center;
+        }
+        .work img {
+            width: 100%;
+            border-radius: 18px;
+        }
+        .work a {
+            color: inherit;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1em;
+        }
+        .work p {
+            margin: 5px 0;
+        }
+        .work .release-date {
+            font-size: 0.8em;
+            color: var(--text-color);
+        }
+        .links {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .links a {
+            display: inline-block;
+            background-color: #2e2e2e;
+            color: #fff;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .links a:hover {
+            background-color: #1a1a1a;
+        }
+        .contact {
+            margin-top: 20px;
+        }
+        footer {
+            margin-top: 20px;
+        }
+.work img {
+    width: 100%;
+    border-radius: 18px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.work:hover img {
+    transform: scale(1.1); /* 放大 */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* 添加阴影效果 */
+}
+.links a {
+    display: inline-block;
+    background-color: #2e2e2e;
+    color: #fff;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.links a:hover {
+    transform: scale(1.1); /* 放大效果 */
+    background-color: #1a1a1a; /* 更深的背景色 */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* 添加阴影效果 */
+}
+
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="./Avatar.png" alt="Avatar">
+    <h1>0M_P</h1>
+    <h2>VOCALOID Producer</h2>
+    <p>Since 2017</p>
+</header>
+
+<div class="container">
+    <div class="profile">
+        <h2>About Me</h2>
+        <p>Welcome to my official page! I'm 0M_P, a VOCALOID producer since 2017.</p>
+        <h2>Works</h2>
+    </div>
+
+    <div class="works">
+        <div class="work">
+            <a href="https://linkco.re/gHE8PnXa?lang=ja" target="_blank"><img src="./YNR.jpg" alt="You Need - Reloaded"></a>
+            <p><a href="https://linkco.re/gHE8PnXa?lang=ja" target="_blank">You Need - Reloaded</a></p>
+            <p class="release-date">Release Date: 2024-08-31</p>
+        </div>
+        <div class="work">
+            <a href="https://music.163.com/song?id=2067421358" target="_blank"><img src="./DreamR.jpg" alt="Dream - Reloaded"></a>
+            <p><a href="https://music.163.com/song?id=2067421358" target="_blank">Dream - Reloaded</a></p>
+            <p class="release-date">Release Date: 2023-07-27</p>
+        </div>
+        <div class="work">
+            <a href="https://linkco.re/Ufv1vnzA?lang=ja" target="_blank"><img src="./GNR.jpg" alt="Good Night - Reloaded"></a>
+            <p><a href="https://linkco.re/Ufv1vnzA?lang=ja" target="_blank">Good Night - Reloaded</a></p>
+            <p class="release-date">Release Date: 2024-05-01</p>
+        </div>
+        <div class="work">
+            <a href="https://music.163.com/album?id=130560018" target="_blank"><img src="./SMR.jpg" alt="SUMMER - 2021 Reloaded"></a>
+            <p><a href="https://music.163.com/album?id=130560018" target="_blank">SUMMER - 2021 Reloaded</a></p>
+            <p class="release-date">Release Date: 2021-07-01</p>
+        </div>
+    </div>
+
+    <div class="links">
+        <h2>Personal Pages</h2>
+        <a href="https://space.bilibili.com/168264291" target="_blank">Bilibili</a>
+        <a href="https://www.tunecore.co.jp/artists/0M_P" target="_blank">TuneCore Japan</a>
+        <a href="https://youtube.com/@0M_P" target="_blank">YouTube</a>
+        <a href="https://music.apple.com/jp/artist/1699342983" target="_blank">Apple Music</a>
+        <a href="https://open.spotify.com/artist/2xPheCv27oLtbyjb7TsXd0" target="_blank">Spotify</a>
+        <a href="http://music.163.com/artist?id=36284273" target="_blank">NetEase Cloud Music</a>
+        <a href="https://twitter.com/0M_P_39" target="_blank">X (Twitter)</a>
+    </div>
+
+    <div class="contact">
+        <h2>Contact</h2>
+        <p>E-mail: coiko39@gmail.com</p>
+        <p>QQ: 1164266078</p>
+    </div>
+</div>
+
+<footer>
+    <p>Developed with ChatGPT</p>
+    <p>&copy; 2025 0M_P All rights reserved.</p>
+    <p>You Need - Reloaded ℗ 2024 0M Production/0M_P</p>
+    <p>Dream - Reloaded ℗ 2023 0M_P</p>
+    <p>Good Night - Reloaded ℗ 2024 0M Production/0M_P</p>
+    <p>SUMMER - 2021 Reloaded ℗ 2021 ColdP/0M_P</p>
+</footer>
+
+</body>
+</html>
