@@ -32,6 +32,11 @@
             --header-footer-bg: #f0f0f0;
             --container-bg: #ffffff;
             --box-shadow: rgba(0, 0, 0, 0.1);
+            /* 新增板块背景色 */
+            --about-me-bg: #f9f9f9;
+            --works-bg: #f5f5f5;
+            --personal-pages-bg: #f1f1f1;
+            --contact-bg: #ededed;
         }
 
         @media (prefers-color-scheme: dark) {
@@ -41,6 +46,11 @@
                 --header-footer-bg: #2e2e2e;
                 --container-bg: #1e1e1e;
                 --box-shadow: rgba(0, 0, 0, 0.5);
+                /* 新增板块背景色 - 暗模式 */
+                --about-me-bg: #252525;
+                --works-bg: #292929;
+                --personal-pages-bg: #2d2d2d;
+                --contact-bg: #313131;
             }
         }
 
@@ -64,6 +74,31 @@
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px var(--box-shadow);
+        }
+        /* 新增板块样式 */
+        .about-me-section {
+            background: var(--about-me-bg);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .works-section {
+            background: var(--works-bg);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .personal-pages-section {
+            background: var(--personal-pages-bg);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .contact-section {
+            background: var(--contact-bg);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
         }
         .profile {
             text-align: center;
@@ -164,48 +199,62 @@
 </header>
 
 <div class="container">
-    <div class="profile">
-        <h2>About Me</h2>
-        <p>Welcome to my official page! I'm 0M_P, a VOCALOID producer since 2017.</p>
+    <!-- About Me 板块 -->
+    <div class="about-me-section">
+        <div class="profile">
+            <h2>About Me</h2>
+            <p>Welcome to my official page! I'm 0M_P, a VOCALOID producer since 2017.</p>
+        </div>
+    </div>
+
+    <!-- Works 板块 -->
+    <div class="works-section">
         <h2>Works</h2>
+        <div class="works">
+            <div class="work">
+                <a href="https://linkco.re/XThrYXSs" target="_blank"><img src="./inner_Cover.png" alt="You Need - Reloaded"></a>
+                <p><a href="https://linkco.re/XThrYXSs" target="_blank">inner</a></p>
+                <p class="release-date">Release Date: 2025-02-25</p>
+            </div>
+            <div class="work">
+                <a href="https://linkco.re/gHE8PnXa?lang=ja" target="_blank"><img src="./YNR.jpg" alt="You Need - Reloaded"></a>
+                <p><a href="https://linkco.re/gHE8PnXa?lang=ja" target="_blank">You Need - Reloaded</a></p>
+                <p class="release-date">Release Date: 2024-08-31</p>
+            </div>
+            <div class="work">
+                <a href="https://music.163.com/song?id=2067421358" target="_blank"><img src="./DreamR.jpg" alt="Dream - Reloaded"></a>
+                <p><a href="https://music.163.com/song?id=2067421358" target="_blank">Dream - Reloaded</a></p>
+                <p class="release-date">Release Date: 2023-07-27</p>
+            </div>
+            <div class="work">
+                <a href="https://linkco.re/Ufv1vnzA?lang=ja" target="_blank"><img src="./GNR.jpg" alt="Good Night - Reloaded"></a>
+                <p><a href="https://linkco.re/Ufv1vnzA?lang=ja" target="_blank">Good Night - Reloaded</a></p>
+                <p class="release-date">Release Date: 2024-05-01</p>
+            </div>
+            <div class="work">
+                <a href="https://music.163.com/album?id=130560018" target="_blank"><img src="./SMR.jpg" alt="SUMMER - 2021 Reloaded"></a>
+                <p><a href="https://music.163.com/album?id=130560018" target="_blank">SUMMER - 2021 Reloaded</a></p>
+                <p class="release-date">Release Date: 2021-07-01</p>
+            </div>
+        </div>
     </div>
 
-    <div class="works">
-        <div class="work">
-            <a href="https://linkco.re/gHE8PnXa?lang=ja" target="_blank"><img src="./YNR.jpg" alt="You Need - Reloaded"></a>
-            <p><a href="https://linkco.re/gHE8PnXa?lang=ja" target="_blank">You Need - Reloaded</a></p>
-            <p class="release-date">Release Date: 2024-08-31</p>
-        </div>
-        <div class="work">
-            <a href="https://music.163.com/song?id=2067421358" target="_blank"><img src="./DreamR.jpg" alt="Dream - Reloaded"></a>
-            <p><a href="https://music.163.com/song?id=2067421358" target="_blank">Dream - Reloaded</a></p>
-            <p class="release-date">Release Date: 2023-07-27</p>
-        </div>
-        <div class="work">
-            <a href="https://linkco.re/Ufv1vnzA?lang=ja" target="_blank"><img src="./GNR.jpg" alt="Good Night - Reloaded"></a>
-            <p><a href="https://linkco.re/Ufv1vnzA?lang=ja" target="_blank">Good Night - Reloaded</a></p>
-            <p class="release-date">Release Date: 2024-05-01</p>
-        </div>
-        <div class="work">
-            <a href="https://music.163.com/album?id=130560018" target="_blank"><img src="./SMR.jpg" alt="SUMMER - 2021 Reloaded"></a>
-            <p><a href="https://music.163.com/album?id=130560018" target="_blank">SUMMER - 2021 Reloaded</a></p>
-            <p class="release-date">Release Date: 2021-07-01</p>
-        </div>
-    </div>
-
-    <div class="links">
+    <!-- Personal Pages 板块 -->
+    <div class="personal-pages-section">
         <h2>Personal Pages</h2>
-        <a href="https://links.0m-p.space" target="_blank">Links</a>
-        <a href="https://space.bilibili.com/168264291" target="_blank">Bilibili</a>
-        <a href="https://www.tunecore.co.jp/artists/0M_P" target="_blank">TuneCore Japan</a>
-        <a href="https://youtube.com/@0M_P" target="_blank">YouTube</a>
-        <a href="https://music.apple.com/jp/artist/1699342983" target="_blank">Apple Music</a>
-        <a href="https://open.spotify.com/artist/2xPheCv27oLtbyjb7TsXd0" target="_blank">Spotify</a>
-        <a href="http://music.163.com/artist?id=36284273" target="_blank">NetEase Cloud Music</a>
-        <a href="https://twitter.com/0M_P_39" target="_blank">X (Twitter)</a>
+        <div class="links">
+            <a href="https://space.bilibili.com/168264291" target="_blank">Bilibili</a>
+            <a href="https://www.tunecore.co.jp/artists/0M_P" target="_blank">TuneCore Japan</a>
+            <a href="https://youtube.com/@0M_P" target="_blank">YouTube</a>
+            <a href="https://music.apple.com/jp/artist/1699342983" target="_blank">Apple Music</a>
+            <a href="https://open.spotify.com/artist/2xPheCv27oLtbyjb7TsXd0" target="_blank">Spotify</a>
+            <a href="http://music.163.com/artist?id=36284273" target="_blank">NetEase Cloud Music</a>
+            <a href="https://twitter.com/0M_P_39" target="_blank">X (Twitter)</a>
+        </div>
     </div>
 
-    <div class="contact">
+    <!-- Contact 板块 -->
+    <div class="contact-section">
         <h2>Contact</h2>
         <p>E-mail: coiko39@gmail.com</p>
         <p>QQ: 1164266078</p>
