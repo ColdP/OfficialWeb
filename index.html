@@ -1,274 +1,242 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>0M_P</title>
+    <title>0M_P | Official Page</title>
+    
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Material Symbols for icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
     <style>
-@font-face {
-    font-family: 'OPPOSans';
-    src: url('./fonts/OPPOSans/OPPOSans-Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'OPPOSans';
-    src: url('./fonts/OPPOSans/OPPOSans-Medium.ttf') format('truetype');
-    font-weight: 500;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'OPPOSans';
-    src: url('./fonts/OPPOSans/OPPOSans-Bold.ttf') format('truetype');
-    font-weight: bold;
-    font-style: normal;
-}
-
+        /* Custom styles for the page, inspired by Links.html */
         :root {
-            --bg-color: #ffffff;
-            --text-color: #000000;
-            --header-footer-bg: #f0f0f0;
-            --container-bg: #ffffff;
-            --box-shadow: rgba(0, 0, 0, 0.1);
-            /* 新增板块背景色 */
-            --about-me-bg: #f9f9f9;
-            --works-bg: #f5f5f5;
-            --personal-pages-bg: #f1f1f1;
-            --contact-bg: #ededed;
+            --theme-blue: #3b82f6; /* A nice, not-too-saturated blue */
+        }
+        
+        /* Define fonts and base styles */
+        body {
+            font-family: 'Inter', 'Google Sans', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --bg-color: #121212;
-                --text-color: #e0e0e0;
-                --header-footer-bg: #2e2e2e;
-                --container-bg: #1e1e1e;
-                --box-shadow: rgba(0, 0, 0, 0.5);
-                /* 新增板块背景色 - 暗模式 */
-                --about-me-bg: #252525;
-                --works-bg: #292929;
-                --personal-pages-bg: #2d2d2d;
-                --contact-bg: #313131;
+        /* Custom box-shadow for the "manga panel" effect */
+        .manga-shadow {
+            box-shadow: 5px 5px 0px 0px rgba(0,0,0,1);
+        }
+        .dark .manga-shadow {
+            box-shadow: 5px 5px 0px 0px var(--theme-blue);
+        }
+
+        /* Animation for cards appearing on load */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
+        .fade-in-up {
+            animation: fadeInUp 0.5s ease-out forwards;
+            opacity: 0; /* Start hidden */
+        }
 
-        body {
-            font-family: 'OPPOSans', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--bg-color);
-            color: var(--text-color);
+        /* Style for the Material Symbols icon */
+        .material-symbols-outlined {
+          font-variation-settings:
+          'FILL' 0,
+          'wght' 400,
+          'GRAD' 0,
+          'opsz' 24
         }
-        header, footer {
-            background-color: var(--header-footer-bg);
-            color: var(--text-color);
-            text-align: center;
-            padding: 20px 0;
-        }
-        .container {
-            max-width: 800px;
-            margin: 20px auto;
-            background: var(--container-bg);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px var(--box-shadow);
-        }
-        /* 新增板块样式 */
-        .about-me-section {
-            background: var(--about-me-bg);
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-        }
-        .works-section {
-            background: var(--works-bg);
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-        }
-        .personal-pages-section {
-            background: var(--personal-pages-bg);
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-        }
-        .contact-section {
-            background: var(--contact-bg);
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-        }
-        .profile {
-            text-align: center;
-        }
-        .profile img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-        .works {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-        .work {
-            text-align: center;
-        }
-        .work img {
-            width: 100%;
-            border-radius: 18px;
-        }
-        .work a {
-            color: inherit;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1em;
-        }
-        .work p {
-            margin: 5px 0;
-        }
-        .work .release-date {
-            font-size: 0.8em;
-            color: var(--text-color);
-        }
-        .links {
-            margin-top: 20px;
-            text-align: center;
-        }
-        .links a {
-            display: inline-block;
-            background-color: #2e2e2e;
-            color: #fff;
-            padding: 10px 20px;
-            margin: 5px;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: background-color 0.3s;
-        }
-        .links a:hover {
-            background-color: #1a1a1a;
-        }
-        .contact {
-            margin-top: 20px;
-        }
-        footer {
-            margin-top: 20px;
-        }
-.work img {
-    width: 100%;
-    border-radius: 18px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.work:hover img {
-    transform: scale(1.1); /* 放大 */
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* 添加阴影效果 */
-}
-.links a {
-    display: inline-block;
-    background-color: #2e2e2e;
-    color: #fff;
-    padding: 10px 20px;
-    margin: 5px;
-    border-radius: 25px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.links a:hover {
-    transform: scale(1.1); /* 放大效果 */
-    background-color: #1a1a1a; /* 更深的背景色 */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* 添加阴影效果 */
-}
-
     </style>
 </head>
-<body>
+<body class="bg-slate-100 dark:bg-black text-slate-900 dark:text-slate-100 transition-colors duration-500">
 
-<header>
-    <img src="./Avatar.png" alt="Avatar">
-    <h1>0M_P</h1>
-    <h2>VOCALOID Producer</h2>
-    <p>Since 2017</p>
-</header>
+    <!-- Theme switcher button -->
+    <div class="fixed top-4 right-4 z-50">
+        <button id="theme-toggle" class="w-12 h-12 flex items-center justify-center bg-slate-200 dark:bg-slate-800 border-2 border-slate-900 dark:border-slate-500 transition-all duration-300 hover:bg-slate-300 dark:hover:bg-slate-700 hover:scale-110 manga-shadow">
+            <span class="material-symbols-outlined" id="theme-icon">light_mode</span>
+        </button>
+    </div>
 
-<div class="container">
-    <!-- About Me 板块 -->
-    <div class="about-me-section">
-        <div class="profile">
-            <h2>About Me</h2>
-            <p>Welcome to my official page! I'm 0M_P, a VOCALOID producer since 2017.</p>
+    <!-- Main container for all content -->
+    <main class="container mx-auto max-w-3xl p-4 sm:p-6 md:p-8">
+        <div class="space-y-8">
+            
+            <!-- Card 1: Profile & About Me -->
+            <section class="card-animate bg-white dark:bg-slate-900 border-2 border-slate-900 dark:border-slate-200 manga-shadow transition-all duration-500">
+                <div class="flex flex-col items-center text-center p-8">
+                    <img src="./Avatar.png" alt="0M_P Avatar" class="w-28 h-28 object-cover border-2 border-slate-900 dark:border-slate-200" onerror="this.onerror=null;this.src='https://placehold.co/112x112/000000/FFFFFF?text=0M_P';">
+                    <h1 class="text-4xl font-black mt-4">0M_P</h1>
+                    <h2 class="mt-1 text-lg text-slate-600 dark:text-slate-400">VOCALOID Producer</h2>
+                    <p class="mt-2 text-sm text-slate-500 dark:text-slate-300">Since 2017</p>
+                    <p class="mt-4 max-w-md">Welcome to my official page! I'm 0M_P, a VOCALOID producer since 2017.</p>
+                </div>
+            </section>
+
+            <!-- Card 2: Works -->
+            <section class="card-animate bg-white dark:bg-slate-900 border-2 border-slate-900 dark:border-slate-200 manga-shadow transition-all duration-500">
+                <div class="p-6">
+                    <h2 class="text-xl font-bold text-center mb-6 border-b-2 border-slate-900 dark:border-slate-200 pb-2">WORKS</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Work Item 1 -->
+                        <a href="https://linkco.re/XThrYXSs" target="_blank" rel="noopener noreferrer" class="group transition-transform duration-300 hover:scale-105">
+                            <img src="./inner_Cover.png" alt="inner Cover" class="w-full h-auto object-cover border-2 border-slate-900 dark:border-slate-400 group-hover:border-[var(--theme-blue)] transition-colors duration-300" onerror="this.onerror=null;this.src='https://placehold.co/300x300/1e293b/FFFFFF?text=inner';">
+                            <h3 class="font-bold mt-2 text-center group-hover:text-[var(--theme-blue)] transition-colors duration-300">inner</h3>
+                            <p class="text-sm text-center text-slate-500 dark:text-slate-400">2025-02-25</p>
+                        </a>
+                        <!-- Work Item 2 -->
+                        <a href="https://linkco.re/gHE8PnXa?lang=ja" target="_blank" rel="noopener noreferrer" class="group transition-transform duration-300 hover:scale-105">
+                            <img src="./YNR.jpg" alt="You Need - Reloaded Cover" class="w-full h-auto object-cover border-2 border-slate-900 dark:border-slate-400 group-hover:border-[var(--theme-blue)] transition-colors duration-300" onerror="this.onerror=null;this.src='https://placehold.co/300x300/1e293b/FFFFFF?text=YNR';">
+                            <h3 class="font-bold mt-2 text-center group-hover:text-[var(--theme-blue)] transition-colors duration-300">You Need - Reloaded</h3>
+                             <p class="text-sm text-center text-slate-500 dark:text-slate-400">2024-08-31</p>
+                        </a>
+                        <!-- Work Item 3 -->
+                        <a href="https://music.163.com/song?id=2067421358" target="_blank" rel="noopener noreferrer" class="group transition-transform duration-300 hover:scale-105">
+                            <img src="./DreamR.jpg" alt="Dream - Reloaded Cover" class="w-full h-auto object-cover border-2 border-slate-900 dark:border-slate-400 group-hover:border-[var(--theme-blue)] transition-colors duration-300" onerror="this.onerror=null;this.src='https://placehold.co/300x300/1e293b/FFFFFF?text=DreamR';">
+                            <h3 class="font-bold mt-2 text-center group-hover:text-[var(--theme-blue)] transition-colors duration-300">Dream - Reloaded</h3>
+                            <p class="text-sm text-center text-slate-500 dark:text-slate-400">2023-07-27</p>
+                        </a>
+                        <!-- Work Item 4 -->
+                        <a href="https://linkco.re/Ufv1vnzA?lang=ja" target="_blank" rel="noopener noreferrer" class="group transition-transform duration-300 hover:scale-105">
+                            <img src="./GNR.jpg" alt="Good Night - Reloaded Cover" class="w-full h-auto object-cover border-2 border-slate-900 dark:border-slate-400 group-hover:border-[var(--theme-blue)] transition-colors duration-300" onerror="this.onerror=null;this.src='https://placehold.co/300x300/1e293b/FFFFFF?text=GNR';">
+                            <h3 class="font-bold mt-2 text-center group-hover:text-[var(--theme-blue)] transition-colors duration-300">Good Night - Reloaded</h3>
+                            <p class="text-sm text-center text-slate-500 dark:text-slate-400">2024-05-01</p>
+                        </a>
+                        <!-- Work Item 5 -->
+                        <a href="https://music.163.com/album?id=130560018" target="_blank" rel="noopener noreferrer" class="group transition-transform duration-300 hover:scale-105">
+                            <img src="./SMR.jpg" alt="SUMMER - 2021 Reloaded Cover" class="w-full h-auto object-cover border-2 border-slate-900 dark:border-slate-400 group-hover:border-[var(--theme-blue)] transition-colors duration-300" onerror="this.onerror=null;this.src='https://placehold.co/300x300/1e293b/FFFFFF?text=SMR';">
+                            <h3 class="font-bold mt-2 text-center group-hover:text-[var(--theme-blue)] transition-colors duration-300">SUMMER - 2021 Reloaded</h3>
+                            <p class="text-sm text-center text-slate-500 dark:text-slate-400">2021-07-01</p>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Card 3: Personal Pages -->
+            <section class="card-animate bg-white dark:bg-slate-900 border-2 border-slate-900 dark:border-slate-200 manga-shadow transition-all duration-500">
+                <div class="p-6">
+                    <h2 class="text-xl font-bold text-center mb-6 border-b-2 border-slate-900 dark:border-slate-200 pb-2">PERSONAL PAGES</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <a href="https://space.bilibili.com/168264291" target="_blank" rel="noopener noreferrer" class="link-button">Bilibili</a>
+                        <a href="https://www.tunecore.co.jp/artists/0M_P" target="_blank" rel="noopener noreferrer" class="link-button">TuneCore Japan</a>
+                        <a href="https://youtube.com/@0M_P" target="_blank" rel="noopener noreferrer" class="link-button">YouTube</a>
+                        <a href="https://music.apple.com/jp/artist/1699342983" target="_blank" rel="noopener noreferrer" class="link-button">Apple Music</a>
+                        <a href="https://open.spotify.com/artist/2xPheCv27oLtbyjb7TsXd0" target="_blank" rel="noopener noreferrer" class="link-button">Spotify</a>
+                        <a href="http://music.163.com/artist?id=36284273" target="_blank" rel="noopener noreferrer" class="link-button">NetEase Cloud Music</a>
+                        <a href="https://twitter.com/0M_P_39" target="_blank" rel="noopener noreferrer" class="link-button">X (Twitter)</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Card 4: Contact -->
+            <section class="card-animate bg-white dark:bg-slate-900 border-2 border-slate-900 dark:border-slate-200 manga-shadow transition-all duration-500">
+                 <div class="p-6">
+                    <h2 class="text-xl font-bold text-center mb-6 border-b-2 border-slate-900 dark:border-slate-200 pb-2">CONTACT</h2>
+                    <div class="text-center space-y-3">
+                        <a href="mailto:coiko39@gmail.com" class="link-button max-w-sm mx-auto">E-mail: coiko39@gmail.com</a>
+                        <p class="font-bold p-4 bg-slate-100 dark:bg-slate-800 border-2 border-slate-900 dark:border-slate-500 max-w-sm mx-auto">QQ: 1164266078</p>
+                    </div>
+                </div>
+            </section>
+
         </div>
-    </div>
 
-    <!-- Works 板块 -->
-    <div class="works-section">
-        <h2>Works</h2>
-        <div class="works">
-            <div class="work">
-                <a href="https://linkco.re/XThrYXSs" target="_blank"><img src="./inner_Cover.png" alt="You Need - Reloaded"></a>
-                <p><a href="https://linkco.re/XThrYXSs" target="_blank">inner</a></p>
-                <p class="release-date">Release Date: 2025-02-25</p>
-            </div>
-            <div class="work">
-                <a href="https://linkco.re/gHE8PnXa?lang=ja" target="_blank"><img src="./YNR.jpg" alt="You Need - Reloaded"></a>
-                <p><a href="https://linkco.re/gHE8PnXa?lang=ja" target="_blank">You Need - Reloaded</a></p>
-                <p class="release-date">Release Date: 2024-08-31</p>
-            </div>
-            <div class="work">
-                <a href="https://music.163.com/song?id=2067421358" target="_blank"><img src="./DreamR.jpg" alt="Dream - Reloaded"></a>
-                <p><a href="https://music.163.com/song?id=2067421358" target="_blank">Dream - Reloaded</a></p>
-                <p class="release-date">Release Date: 2023-07-27</p>
-            </div>
-            <div class="work">
-                <a href="https://linkco.re/Ufv1vnzA?lang=ja" target="_blank"><img src="./GNR.jpg" alt="Good Night - Reloaded"></a>
-                <p><a href="https://linkco.re/Ufv1vnzA?lang=ja" target="_blank">Good Night - Reloaded</a></p>
-                <p class="release-date">Release Date: 2024-05-01</p>
-            </div>
-            <div class="work">
-                <a href="https://music.163.com/album?id=130560018" target="_blank"><img src="./SMR.jpg" alt="SUMMER - 2021 Reloaded"></a>
-                <p><a href="https://music.163.com/album?id=130560018" target="_blank">SUMMER - 2021 Reloaded</a></p>
-                <p class="release-date">Release Date: 2021-07-01</p>
-            </div>
-        </div>
-    </div>
+        <!-- Footer -->
+        <footer class="text-center text-xs text-slate-500 dark:text-slate-400 py-8 space-y-1">
+            <p>Developed with Gemini</p>
+            <p>&copy; 2025 0M_P All rights reserved.</p>
+            <p>You Need - Reloaded ℗ 2024 0M Production/0M_P</p>
+            <p>Dream - Reloaded ℗ 2023 0M_P</p>
+            <p>Good Night - Reloaded ℗ 2024 0M Production/0M_P</p>
+            <p>SUMMER - 2021 Reloaded ℗ 2021 ColdP/0M_P</p>
+        </footer>
+    </main>
 
-    <!-- Personal Pages 板块 -->
-    <div class="personal-pages-section">
-        <h2>Personal Pages</h2>
-        <div class="links">
-            <a href="https://space.bilibili.com/168264291" target="_blank">Bilibili</a>
-            <a href="https://www.tunecore.co.jp/artists/0M_P" target="_blank">TuneCore Japan</a>
-            <a href="https://youtube.com/@0M_P" target="_blank">YouTube</a>
-            <a href="https://music.apple.com/jp/artist/1699342983" target="_blank">Apple Music</a>
-            <a href="https://open.spotify.com/artist/2xPheCv27oLtbyjb7TsXd0" target="_blank">Spotify</a>
-            <a href="http://music.163.com/artist?id=36284273" target="_blank">NetEase Cloud Music</a>
-            <a href="https://twitter.com/0M_P_39" target="_blank">X (Twitter)</a>
-        </div>
-    </div>
+    <script>
+        // --- Theme Toggling Logic ---
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const htmlEl = document.documentElement;
 
-    <!-- Contact 板块 -->
-    <div class="contact-section">
-        <h2>Contact</h2>
-        <p>E-mail: coiko39@gmail.com</p>
-        <p>QQ: 1164266078</p>
-    </div>
-</div>
+        // Function to set theme
+        const setTheme = (theme) => {
+            if (theme === 'dark') {
+                htmlEl.classList.add('dark');
+                themeIcon.textContent = 'dark_mode';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                htmlEl.classList.remove('dark');
+                themeIcon.textContent = 'light_mode';
+                localStorage.setItem('theme', 'light');
+            }
+        };
 
-<footer>
-    <p>Developed with ChatGPT</p>
-    <p>&copy; 2025 0M_P All rights reserved.</p>
-    <p>You Need - Reloaded ℗ 2024 0M Production/0M_P</p>
-    <p>Dream - Reloaded ℗ 2023 0M_P</p>
-    <p>Good Night - Reloaded ℗ 2024 0M Production/0M_P</p>
-    <p>SUMMER - 2021 Reloaded ℗ 2021 ColdP/0M_P</p>
-</footer>
+        // Event listener for the toggle button
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = htmlEl.classList.contains('dark') ? 'dark' : 'light';
+            setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+        });
+
+        // Initialize theme on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            
+            if (savedTheme) {
+                setTheme(savedTheme);
+            } else {
+                // If no theme is saved, use the system preference. Default is light.
+                setTheme(prefersDark ? 'dark' : 'light');
+            }
+        });
+
+        // --- Staggered Animation Logic ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.card-animate');
+            cards.forEach((card, index) => {
+                // Apply a delay to each card to create a staggered effect
+                card.style.animationDelay = `${index * 100}ms`;
+                card.classList.add('fade-in-up');
+            });
+        });
+        
+        // --- Tailwind CSS Configuration ---
+        tailwind.config = {
+            darkMode: 'class', // Enable class-based dark mode
+            theme: {
+                extend: {
+                    // You can extend the theme here if needed
+                }
+            },
+            plugins: [
+                function({ addComponents }) {
+                    addComponents({
+                        '.link-button': {
+                            '@apply block w-full p-4 bg-slate-100 dark:bg-slate-800 border-2 border-slate-900 dark:border-slate-500 text-center font-bold transition-all duration-300': {},
+                            '&:hover': {
+                                '@apply bg-[var(--theme-blue)] text-white border-[var(--theme-blue)] dark:border-[var(--theme-blue)] -translate-y-1': {},
+                                'box-shadow': '0 5px 0 0 rgba(0,0,0,0.2)',
+                            },
+                        }
+                    })
+                }
+            ]
+        }
+    </script>
 
 </body>
 </html>
