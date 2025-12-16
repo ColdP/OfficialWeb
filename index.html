@@ -1,242 +1,349 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>0M_P | Official Page</title>
-    
-    <!-- Tailwind CSS for styling -->
+    <title>0M_P OFFICIAL SITE</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;500;700&family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
     
-    <!-- Google Fonts: Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
-    
-    <!-- Material Symbols for icons -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Manrope', 'Noto Sans JP', 'sans-serif'],
+                    },
+                    colors: {
+                        'brand-black': '#050505',
+                        'brand-gray': '#1F1F1F',
+                        'brand-white': '#F5F5F5',
+                        'brand-dim': '#888888',
+                    },
+                    spacing: {
+                        '128': '32rem',
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        /* Custom styles for the page, inspired by Links.html */
-        :root {
-            --theme-blue: #3b82f6; /* A nice, not-too-saturated blue */
-        }
-        
-        /* Define fonts and base styles */
         body {
-            font-family: 'Inter', 'Google Sans', sans-serif;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+            background-color: #050505;
+            color: #F5F5F5;
         }
-
-        /* Custom box-shadow for the "manga panel" effect */
-        .manga-shadow {
-            box-shadow: 5px 5px 0px 0px rgba(0,0,0,1);
+        .hover-underline-animation {
+            display: inline-block;
+            position: relative;
         }
-        .dark .manga-shadow {
-            box-shadow: 5px 5px 0px 0px var(--theme-blue);
+        .hover-underline-animation::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 1px;
+            bottom: 0;
+            left: 0;
+            background-color: #F5F5F5;
+            transform-origin: bottom right;
+            transition: transform 0.25s ease-out;
         }
-
-        /* Animation for cards appearing on load */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .hover-underline-animation:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
         }
-        .fade-in-up {
-            animation: fadeInUp 0.5s ease-out forwards;
-            opacity: 0; /* Start hidden */
+        .fade-in {
+            animation: fadeIn 1s ease-in forwards;
+            opacity: 0;
         }
-
-        /* Style for the Material Symbols icon */
-        .material-symbols-outlined {
-          font-variation-settings:
-          'FILL' 0,
-          'wght' 400,
-          'GRAD' 0,
-          'opsz' 24
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #050505; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333; 
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555; 
         }
     </style>
 </head>
-<body class="bg-slate-100 dark:bg-black text-slate-900 dark:text-slate-100 transition-colors duration-500">
+<body class="font-sans antialiased selection:bg-white selection:text-black">
 
-    <!-- Theme switcher button -->
-    <div class="fixed top-4 right-4 z-50">
-        <button id="theme-toggle" class="w-12 h-12 flex items-center justify-center bg-slate-200 dark:bg-slate-800 border-2 border-slate-900 dark:border-slate-500 transition-all duration-300 hover:bg-slate-300 dark:hover:bg-slate-700 hover:scale-110 manga-shadow">
-            <span class="material-symbols-outlined" id="theme-icon">light_mode</span>
-        </button>
-    </div>
+    <!-- Navigation (Minimal) -->
+    <nav class="fixed top-0 w-full z-50 mix-blend-difference px-6 py-6 flex justify-between items-center pointer-events-none">
+        <div class="text-xl font-bold tracking-widest pointer-events-auto">
+            <a href="#" class="hover:opacity-60 transition-opacity">0M_P</a>
+        </div>
+        <div class="space-x-6 text-sm font-light hidden md:block pointer-events-auto">
+            <a href="#works" class="hover-underline-animation">WORKS</a>
+            <a href="#movie" class="hover-underline-animation">MOVIE</a>
+            <a href="#projects" class="hover-underline-animation">PROJECTS</a>
+            <a href="#profile" class="hover-underline-animation">PROFILE</a>
+        </div>
+    </nav>
 
-    <!-- Main container for all content -->
-    <main class="container mx-auto max-w-3xl p-4 sm:p-6 md:p-8">
-        <div class="space-y-8">
-            
-            <!-- Card 1: Profile & About Me -->
-            <section class="card-animate bg-white dark:bg-slate-900 border-2 border-slate-900 dark:border-slate-200 manga-shadow transition-all duration-500">
-                <div class="flex flex-col items-center text-center p-8">
-                    <img src="./Avatar.png" alt="0M_P Avatar" class="w-28 h-28 object-cover border-2 border-slate-900 dark:border-slate-200" onerror="this.onerror=null;this.src='https://placehold.co/112x112/000000/FFFFFF?text=0M_P';">
-                    <h1 class="text-4xl font-black mt-4">0M_P</h1>
-                    <h2 class="mt-1 text-lg text-slate-600 dark:text-slate-400">VOCALOID Producer</h2>
-                    <p class="mt-2 text-sm text-slate-500 dark:text-slate-300">Since 2017</p>
-                    <p class="mt-4 max-w-md">Welcome to my official page! I'm 0M_P, a VOCALOID producer since 2017.</p>
-                </div>
-            </section>
-
-            <!-- Card 2: Works -->
-            <section class="card-animate bg-white dark:bg-slate-900 border-2 border-slate-900 dark:border-slate-200 manga-shadow transition-all duration-500">
-                <div class="p-6">
-                    <h2 class="text-xl font-bold text-center mb-6 border-b-2 border-slate-900 dark:border-slate-200 pb-2">WORKS</h2>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <!-- Work Item 1 -->
-                        <a href="https://linkco.re/XThrYXSs" target="_blank" rel="noopener noreferrer" class="group transition-transform duration-300 hover:scale-105">
-                            <img src="./inner_Cover.png" alt="inner Cover" class="w-full h-auto object-cover border-2 border-slate-900 dark:border-slate-400 group-hover:border-[var(--theme-blue)] transition-colors duration-300" onerror="this.onerror=null;this.src='https://placehold.co/300x300/1e293b/FFFFFF?text=inner';">
-                            <h3 class="font-bold mt-2 text-center group-hover:text-[var(--theme-blue)] transition-colors duration-300">inner</h3>
-                            <p class="text-sm text-center text-slate-500 dark:text-slate-400">2025-02-25</p>
-                        </a>
-                        <!-- Work Item 2 -->
-                        <a href="https://linkco.re/gHE8PnXa?lang=ja" target="_blank" rel="noopener noreferrer" class="group transition-transform duration-300 hover:scale-105">
-                            <img src="./YNR.jpg" alt="You Need - Reloaded Cover" class="w-full h-auto object-cover border-2 border-slate-900 dark:border-slate-400 group-hover:border-[var(--theme-blue)] transition-colors duration-300" onerror="this.onerror=null;this.src='https://placehold.co/300x300/1e293b/FFFFFF?text=YNR';">
-                            <h3 class="font-bold mt-2 text-center group-hover:text-[var(--theme-blue)] transition-colors duration-300">You Need - Reloaded</h3>
-                             <p class="text-sm text-center text-slate-500 dark:text-slate-400">2024-08-31</p>
-                        </a>
-                        <!-- Work Item 3 -->
-                        <a href="https://music.163.com/song?id=2067421358" target="_blank" rel="noopener noreferrer" class="group transition-transform duration-300 hover:scale-105">
-                            <img src="./DreamR.jpg" alt="Dream - Reloaded Cover" class="w-full h-auto object-cover border-2 border-slate-900 dark:border-slate-400 group-hover:border-[var(--theme-blue)] transition-colors duration-300" onerror="this.onerror=null;this.src='https://placehold.co/300x300/1e293b/FFFFFF?text=DreamR';">
-                            <h3 class="font-bold mt-2 text-center group-hover:text-[var(--theme-blue)] transition-colors duration-300">Dream - Reloaded</h3>
-                            <p class="text-sm text-center text-slate-500 dark:text-slate-400">2023-07-27</p>
-                        </a>
-                        <!-- Work Item 4 -->
-                        <a href="https://linkco.re/Ufv1vnzA?lang=ja" target="_blank" rel="noopener noreferrer" class="group transition-transform duration-300 hover:scale-105">
-                            <img src="./GNR.jpg" alt="Good Night - Reloaded Cover" class="w-full h-auto object-cover border-2 border-slate-900 dark:border-slate-400 group-hover:border-[var(--theme-blue)] transition-colors duration-300" onerror="this.onerror=null;this.src='https://placehold.co/300x300/1e293b/FFFFFF?text=GNR';">
-                            <h3 class="font-bold mt-2 text-center group-hover:text-[var(--theme-blue)] transition-colors duration-300">Good Night - Reloaded</h3>
-                            <p class="text-sm text-center text-slate-500 dark:text-slate-400">2024-05-01</p>
-                        </a>
-                        <!-- Work Item 5 -->
-                        <a href="https://music.163.com/album?id=130560018" target="_blank" rel="noopener noreferrer" class="group transition-transform duration-300 hover:scale-105">
-                            <img src="./SMR.jpg" alt="SUMMER - 2021 Reloaded Cover" class="w-full h-auto object-cover border-2 border-slate-900 dark:border-slate-400 group-hover:border-[var(--theme-blue)] transition-colors duration-300" onerror="this.onerror=null;this.src='https://placehold.co/300x300/1e293b/FFFFFF?text=SMR';">
-                            <h3 class="font-bold mt-2 text-center group-hover:text-[var(--theme-blue)] transition-colors duration-300">SUMMER - 2021 Reloaded</h3>
-                            <p class="text-sm text-center text-slate-500 dark:text-slate-400">2021-07-01</p>
-                        </a>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Card 3: Personal Pages -->
-            <section class="card-animate bg-white dark:bg-slate-900 border-2 border-slate-900 dark:border-slate-200 manga-shadow transition-all duration-500">
-                <div class="p-6">
-                    <h2 class="text-xl font-bold text-center mb-6 border-b-2 border-slate-900 dark:border-slate-200 pb-2">PERSONAL PAGES</h2>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        <a href="https://space.bilibili.com/168264291" target="_blank" rel="noopener noreferrer" class="link-button">Bilibili</a>
-                        <a href="https://www.tunecore.co.jp/artists/0M_P" target="_blank" rel="noopener noreferrer" class="link-button">TuneCore Japan</a>
-                        <a href="https://youtube.com/@0M_P" target="_blank" rel="noopener noreferrer" class="link-button">YouTube</a>
-                        <a href="https://music.apple.com/jp/artist/1699342983" target="_blank" rel="noopener noreferrer" class="link-button">Apple Music</a>
-                        <a href="https://open.spotify.com/artist/2xPheCv27oLtbyjb7TsXd0" target="_blank" rel="noopener noreferrer" class="link-button">Spotify</a>
-                        <a href="http://music.163.com/artist?id=36284273" target="_blank" rel="noopener noreferrer" class="link-button">NetEase Cloud Music</a>
-                        <a href="https://twitter.com/0M_P_39" target="_blank" rel="noopener noreferrer" class="link-button">X (Twitter)</a>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Card 4: Contact -->
-            <section class="card-animate bg-white dark:bg-slate-900 border-2 border-slate-900 dark:border-slate-200 manga-shadow transition-all duration-500">
-                 <div class="p-6">
-                    <h2 class="text-xl font-bold text-center mb-6 border-b-2 border-slate-900 dark:border-slate-200 pb-2">CONTACT</h2>
-                    <div class="text-center space-y-3">
-                        <a href="mailto:coiko39@gmail.com" class="link-button max-w-sm mx-auto">E-mail: coiko39@gmail.com</a>
-                        <p class="font-bold p-4 bg-slate-100 dark:bg-slate-800 border-2 border-slate-900 dark:border-slate-500 max-w-sm mx-auto">QQ: 1164266078</p>
-                    </div>
-                </div>
-            </section>
-
+    <!-- Hero Section -->
+    <header class="min-h-screen flex flex-col justify-center items-center text-center px-4 pt-20 fade-in" style="animation-delay: 0.1s;">
+        <div class="mb-8 relative group">
+            <div class="absolute -inset-0.5 bg-gradient-to-r from-gray-600 to-gray-800 rounded-full opacity-0 group-hover:opacity-30 transition duration-1000 blur"></div>
+            <img src="https://records.btm-m.site/assets/images/0M_avatar.png" alt="0M_P Avatar" class="relative w-40 h-40 md:w-56 md:h-56 rounded-full object-cover grayscale contrast-125 border border-neutral-800">
+        </div>
+        
+        <h1 class="text-5xl md:text-8xl font-bold tracking-tighter mb-4">0M_P</h1>
+        <p class="text-xs md:text-sm tracking-[0.3em] uppercase text-brand-dim mb-8">VOCALOID Producer / Sound Producer / Singer / Designer</p>
+        
+        <div class="max-w-2xl mx-auto space-y-2 text-sm font-light text-brand-dim mb-12">
+            <p>Label: 
+                <a href="https://www.universal-music.co.jp/" target="_blank" class="text-white hover:text-gray-400 transition-colors">Universal Music Japan</a> / 
+                <a href="http://records.btm-m.site/" target="_blank" class="text-white hover:text-gray-400 transition-colors">Now2Future RECORDS</a> / 
+                Polydor Records
+            </p>
+            <p class="text-xs opacity-60">VOCALOID Producer since 2017</p>
         </div>
 
-        <!-- Footer -->
-        <footer class="text-center text-xs text-slate-500 dark:text-slate-400 py-8 space-y-1">
-            <p>Developed with Gemini</p>
-            <p>&copy; 2025 0M_P All rights reserved.</p>
-            <p>You Need - Reloaded ℗ 2024 0M Production/0M_P</p>
-            <p>Dream - Reloaded ℗ 2023 0M_P</p>
-            <p>Good Night - Reloaded ℗ 2024 0M Production/0M_P</p>
-            <p>SUMMER - 2021 Reloaded ℗ 2021 ColdP/0M_P</p>
-        </footer>
+        <!-- Social Icons Grid -->
+        <div class="flex flex-wrap justify-center gap-6 md:gap-8 text-xl md:text-2xl text-white/80">
+            <a href="https://x.com/0M_P_39" target="_blank" title="X (Twitter)" class="hover:text-white hover:scale-110 transition-transform"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="https://www.youtube.com/@0M_P" target="_blank" title="YouTube" class="hover:text-white hover:scale-110 transition-transform"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://www.instagram.com/0m_producer/" target="_blank" title="Instagram" class="hover:text-white hover:scale-110 transition-transform"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://soundcloud.com/0m_p" target="_blank" title="SoundCloud" class="hover:text-white hover:scale-110 transition-transform"><i class="fa-brands fa-soundcloud"></i></a>
+            <a href="https://music.apple.com/jp/artist/1699342983" target="_blank" title="Apple Music" class="hover:text-white hover:scale-110 transition-transform"><i class="fa-brands fa-apple"></i></a>
+            <a href="https://open.spotify.com/artist/2xPheCv27oLtbyjb7TsXd0" target="_blank" title="Spotify" class="hover:text-white hover:scale-110 transition-transform"><i class="fa-brands fa-spotify"></i></a>
+            <a href="https://space.bilibili.com/168264291" target="_blank" title="bilibili" class="hover:text-white hover:scale-110 transition-transform"><i class="fa-brands fa-bilibili"></i></a>
+            <a href="https://www.tunecore.co.jp/artists/0M_P" target="_blank" title="TuneCore" class="hover:text-white hover:scale-110 transition-transform text-lg flex items-center"><i class="fa-solid fa-music"></i></a>
+            <a href="https://www.btm-m.site/" target="_blank" title="Official Site" class="hover:text-white hover:scale-110 transition-transform"><i class="fa-solid fa-globe"></i></a>
+        </div>
+        
+        <div class="absolute bottom-10 animate-bounce text-brand-dim">
+            <i class="fa-solid fa-chevron-down"></i>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="max-w-6xl mx-auto px-6 py-20 space-y-32">
+        
+        <!-- Works Section -->
+        <section id="works" class="fade-in" style="animation-delay: 0.3s;">
+            <div class="flex items-end justify-between mb-12 border-b border-white/10 pb-4">
+                <h2 class="text-4xl md:text-6xl font-light tracking-tighter">WORKS</h2>
+                <span class="text-xs tracking-widest text-brand-dim hidden md:inline-block">LATEST RELEASES</span>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+                <!-- Work Item 1 -->
+                <article class="group cursor-pointer">
+                    <a href="https://linkco.re/ab7hTd9v" target="_blank" class="block">
+                        <div class="aspect-square overflow-hidden bg-brand-gray mb-4">
+                            <img src="https://27.btm-m.site/SIC.png" alt="Summer is Coming" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-500 ease-in-out transform group-hover:scale-105">
+                        </div>
+                        <h3 class="text-lg font-medium group-hover:text-white transition-colors">Summer is Coming</h3>
+                        <p class="text-xs text-brand-dim mt-1">Single / Digital</p>
+                    </a>
+                </article>
+
+                <!-- Work Item 2 -->
+                <article class="group cursor-pointer">
+                    <a href="https://linkco.re/XThrYXSs" target="_blank" class="block">
+                        <div class="aspect-square overflow-hidden bg-brand-gray mb-4">
+                            <img src="https://links.btm-m.site/inner_Cover.png" alt="inner" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-500 ease-in-out transform group-hover:scale-105">
+                        </div>
+                        <h3 class="text-lg font-medium group-hover:text-white transition-colors">inner</h3>
+                        <p class="text-xs text-brand-dim mt-1">Single / Digital</p>
+                    </a>
+                </article>
+
+                <!-- Work Item 3 -->
+                <article class="group cursor-pointer">
+                    <a href="https://links.btm-m.site/AfterDream/" target="_blank" class="block">
+                        <div class="aspect-square overflow-hidden bg-brand-gray mb-4">
+                            <img src="https://links.btm-m.site/AfterDream/AD.png" alt="After Dream" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-500 ease-in-out transform group-hover:scale-105">
+                        </div>
+                        <h3 class="text-lg font-medium group-hover:text-white transition-colors">After Dream</h3>
+                        <p class="text-xs text-brand-dim mt-1">Single / Digital</p>
+                    </a>
+                </article>
+            </div>
+        </section>
+
+        <!-- Movie Section -->
+        <section id="movie" class="fade-in" style="animation-delay: 0.4s;">
+            <div class="flex items-end justify-between mb-12 border-b border-white/10 pb-4">
+                <h2 class="text-4xl md:text-6xl font-light tracking-tighter">MOVIES</h2>
+                <span class="text-xs tracking-widest text-brand-dim hidden md:inline-block">FEATURED VIDEO</span>
+            </div>
+
+            <div class="w-full">
+                <a href="https://www.youtube.com/watch?v=TKuvn__CZs4" target="_blank" class="group block relative w-full aspect-video bg-brand-gray overflow-hidden">
+                    <img src="https://links.btm-m.site/inner_MV.jpg" alt="inner MV" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition duration-700">
+                    
+                    <!-- Play Button Overlay -->
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="w-16 h-16 md:w-24 md:h-24 rounded-full border border-white/30 flex items-center justify-center backdrop-blur-sm group-hover:bg-white/10 transition duration-300">
+                            <i class="fa-solid fa-play text-2xl md:text-3xl pl-2"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="absolute bottom-0 left-0 p-6 md:p-10 bg-gradient-to-t from-black/90 to-transparent w-full">
+                        <h3 class="text-2xl md:text-4xl font-bold mb-1">inner</h3>
+                        <p class="text-sm md:text-base text-gray-300">0M_P feat. 初音ミク</p>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="fade-in" style="animation-delay: 0.5s;">
+             <div class="flex items-end justify-between mb-12 border-b border-white/10 pb-4">
+                <h2 class="text-4xl md:text-6xl font-light tracking-tighter">PROJECTS</h2>
+                <span class="text-xs tracking-widest text-brand-dim hidden md:inline-block">TOURS & EVENTS</span>
+            </div>
+
+            <div class="space-y-12">
+                <!-- Project 1 -->
+                <div class="group flex flex-col md:flex-row gap-8 items-start">
+                    <div class="w-full md:w-1/3 aspect-[16/9] md:aspect-video bg-brand-gray overflow-hidden">
+                        <img src="https://records.btm-m.site/assets/images/NewDays.png" alt="NEW DAYS Tour" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-500">
+                    </div>
+                    <div class="flex-1 space-y-4">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-2">
+                            <h3 class="text-2xl font-bold">COUNTDOWN TOUR 2025-2026 "NEW DAYS"</h3>
+                            <a href="https://tour.btm-m.site/NewDays/" target="_blank" class="text-xs border border-white/30 px-3 py-1 hover:bg-white hover:text-black transition">DETAILS <i class="fa-solid fa-arrow-right ml-1"></i></a>
+                        </div>
+                        <p class="text-brand-dim text-sm leading-relaxed">TOKYO / SHANGHAI / CHANGSHA</p>
+                        <div class="h-[1px] w-12 bg-white/20"></div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="group flex flex-col md:flex-row gap-8 items-start">
+                    <div class="w-full md:w-1/3 aspect-[16/9] md:aspect-video bg-brand-gray overflow-hidden">
+                        <img src="https://records.btm-m.site/assets/images/DOME26.png" alt="thoughts Tour" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-500">
+                    </div>
+                    <div class="flex-1 space-y-4">
+                         <div class="flex flex-col md:flex-row md:items-center justify-between gap-2">
+                            <h3 class="text-2xl font-bold">DOME TOUR 2026 "thoughts"</h3>
+                            <a href="https://tour.btm-m.site/dome26/" target="_blank" class="text-xs border border-white/30 px-3 py-1 hover:bg-white hover:text-black transition">DETAILS <i class="fa-solid fa-arrow-right ml-1"></i></a>
+                        </div>
+                        <p class="text-brand-dim text-sm leading-relaxed">OSAKA / TOKYO / NAGOYA / FUKUOKA / TAIPEI</p>
+                        <div class="h-[1px] w-12 bg-white/20"></div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="group flex flex-col md:flex-row gap-8 items-start">
+                    <div class="w-full md:w-1/3 aspect-[16/9] md:aspect-video bg-brand-gray overflow-hidden">
+                        <img src="https://records.btm-m.site/assets/images/10thTOUR.png" alt="WHOLE WORLD Tour" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-500">
+                    </div>
+                    <div class="flex-1 space-y-4">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-2">
+                            <h3 class="text-2xl font-bold">10th ANNIVERSARY LIVE TOUR "WHOLE WORLD"</h3>
+                            <a href="https://tour.btm-m.site/26/" target="_blank" class="text-xs border border-white/30 px-3 py-1 hover:bg-white hover:text-black transition">DETAILS <i class="fa-solid fa-arrow-right ml-1"></i></a>
+                        </div>
+                         <p class="text-brand-dim text-sm leading-relaxed">CELEBRATING A DECADE OF MUSIC.</p>
+                        <div class="h-[1px] w-12 bg-white/20"></div>
+                    </div>
+                </div>
+                 <!-- Project 4 -->
+                <div class="group flex flex-col md:flex-row gap-8 items-start">
+                    <div class="w-full md:w-1/3 aspect-[16/9] md:aspect-video bg-brand-gray overflow-hidden">
+                        <img src="https://records.btm-m.site/assets/images/10thProj.png" alt="RE:WiND Project" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-500">
+                    </div>
+                    <div class="flex-1 space-y-4">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-2">
+                            <h3 class="text-2xl font-bold">10th ANNIVERSARY PROJECT "RE:WiND"</h3>
+                            <a href="https://anni.btm-m.site/10th/" target="_blank" class="text-xs border border-white/30 px-3 py-1 hover:bg-white hover:text-black transition">DETAILS <i class="fa-solid fa-arrow-right ml-1"></i></a>
+                        </div>
+                        <div class="h-[1px] w-12 bg-white/20"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Profile Section -->
+        <section id="profile" class="fade-in" style="animation-delay: 0.6s;">
+             <div class="flex items-end justify-between mb-12 border-b border-white/10 pb-4">
+                <h2 class="text-4xl md:text-6xl font-light tracking-tighter">PROFILE</h2>
+                <span class="text-xs tracking-widest text-brand-dim hidden md:inline-block">ABOUT ME</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 text-sm font-light">
+                <div class="space-y-6">
+                    <div class="grid grid-cols-3 border-b border-white/10 pb-2">
+                        <span class="text-brand-dim uppercase tracking-widest text-xs">Origin</span>
+                        <span class="col-span-2">Chenzhou</span>
+                    </div>
+                    <div class="grid grid-cols-3 border-b border-white/10 pb-2">
+                        <span class="text-brand-dim uppercase tracking-widest text-xs">Active Area</span>
+                        <span class="col-span-2">Tokyo</span>
+                    </div>
+                    <div class="grid grid-cols-3 border-b border-white/10 pb-2">
+                        <span class="text-brand-dim uppercase tracking-widest text-xs">Birthday</span>
+                        <span class="col-span-2">2005/10/19</span>
+                    </div>
+                    <div class="grid grid-cols-3 border-b border-white/10 pb-2">
+                        <span class="text-brand-dim uppercase tracking-widest text-xs">Start Year</span>
+                        <span class="col-span-2">2017</span>
+                    </div>
+                </div>
+                <div class="space-y-6">
+                     <div class="grid grid-cols-3 border-b border-white/10 pb-2">
+                        <span class="text-brand-dim uppercase tracking-widest text-xs">Genre</span>
+                        <span class="col-span-2">VOCALOID Pop</span>
+                    </div>
+                    <div class="grid grid-cols-3 border-b border-white/10 pb-2">
+                        <span class="text-brand-dim uppercase tracking-widest text-xs">Contact</span>
+                        <a href="mailto:coiko39@gmail.com" class="col-span-2 hover:text-white transition-colors">coiko39@gmail.com</a>
+                    </div>
+                    <div class="pt-4 text-xs text-brand-dim leading-relaxed">
+                        <p>VOCALOID Producer / Sound Producer / Singer / Designer based in Tokyo.</p>
+                        <p>Creating music that bridges the digital and the emotional.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
+    <!-- Footer -->
+    <footer class="border-t border-white/10 py-12 text-center text-[10px] md:text-xs text-brand-dim font-light tracking-wider space-y-2 px-6">
+        <p>© 2025 UNVERSAL MUSIC LLC / Now2Future RECORDS / 0M_P All rights reserved.</p>
+        <p>"VOCALOID" and “VOCALO CHANGER” are trademarks of <a href="https://www.yamaha.com/" target="_blank" class="underline hover:text-white">Yamaha Corporation</a>.</p>
+    </footer>
+
     <script>
-        // --- Theme Toggling Logic ---
-        const themeToggle = document.getElementById('theme-toggle');
-        const themeIcon = document.getElementById('theme-icon');
-        const htmlEl = document.documentElement;
-
-        // Function to set theme
-        const setTheme = (theme) => {
-            if (theme === 'dark') {
-                htmlEl.classList.add('dark');
-                themeIcon.textContent = 'dark_mode';
-                localStorage.setItem('theme', 'dark');
-            } else {
-                htmlEl.classList.remove('dark');
-                themeIcon.textContent = 'light_mode';
-                localStorage.setItem('theme', 'light');
-            }
-        };
-
-        // Event listener for the toggle button
-        themeToggle.addEventListener('click', () => {
-            const currentTheme = htmlEl.classList.contains('dark') ? 'dark' : 'light';
-            setTheme(currentTheme === 'dark' ? 'light' : 'dark');
-        });
-
-        // Initialize theme on page load
+        // Simple fade-in on scroll script
         document.addEventListener('DOMContentLoaded', () => {
-            const savedTheme = localStorage.getItem('theme');
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            
-            if (savedTheme) {
-                setTheme(savedTheme);
-            } else {
-                // If no theme is saved, use the system preference. Default is light.
-                setTheme(prefersDark ? 'dark' : 'light');
-            }
-        });
+            const observerOptions = {
+                threshold: 0.1
+            };
 
-        // --- Staggered Animation Logic ---
-        document.addEventListener('DOMContentLoaded', () => {
-            const cards = document.querySelectorAll('.card-animate');
-            cards.forEach((card, index) => {
-                // Apply a delay to each card to create a staggered effect
-                card.style.animationDelay = `${index * 100}ms`;
-                card.classList.add('fade-in-up');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationName = 'fadeIn';
+                        entry.target.style.animationDuration = '1s';
+                        entry.target.style.animationFillMode = 'forwards';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('section').forEach(section => {
+                section.style.opacity = '0'; // Hide initially
+                observer.observe(section);
             });
         });
-        
-        // --- Tailwind CSS Configuration ---
-        tailwind.config = {
-            darkMode: 'class', // Enable class-based dark mode
-            theme: {
-                extend: {
-                    // You can extend the theme here if needed
-                }
-            },
-            plugins: [
-                function({ addComponents }) {
-                    addComponents({
-                        '.link-button': {
-                            '@apply block w-full p-4 bg-slate-100 dark:bg-slate-800 border-2 border-slate-900 dark:border-slate-500 text-center font-bold transition-all duration-300': {},
-                            '&:hover': {
-                                '@apply bg-[var(--theme-blue)] text-white border-[var(--theme-blue)] dark:border-[var(--theme-blue)] -translate-y-1': {},
-                                'box-shadow': '0 5px 0 0 rgba(0,0,0,0.2)',
-                            },
-                        }
-                    })
-                }
-            ]
-        }
     </script>
-
 </body>
 </html>
