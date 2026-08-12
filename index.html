@@ -1,231 +1,410 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>0M_P's Links</title>
-    
-    <!-- Tailwind CSS for styling -->
+    <title>0M_P OFFICIAL SITE</title>
+    <meta name="description" content="0M_P official website. Explore the works and releases of VOCALOID producer 0M_P.">
+    <meta name="theme-color" content="#ffffff">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="0M_P OFFICIAL SITE">
+    <meta property="og:description" content="The official website of VOCALOID producer 0M_P.">
+    <meta property="og:image" content="https://pro.btm-m.site/0m_avatar.png">
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Google Fonts: Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
-    
-    <!-- Material Symbols for icons -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-
     <style>
-        /* Custom styles for the page */
-        :root {
-            --theme-blue: #3b82f6; /* A nice, not-too-saturated blue */
+        /* Typography Definition */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap');
+        
+        body {
+            /* Prioritize Google Sans and MiSans, fallback to Inter and Noto Sans SC */
+            font-family: 'Google Sans', 'MiSans', 'Inter', 'Noto Sans SC', sans-serif;
+            color: #1d1d1f;
+            background-color: #ffffff;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Apple-like Modal Blur Transition */
+        #modal {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+        #modal.active {
+            opacity: 1;
+            pointer-events: auto;
         }
         
-        /* Define fonts and base styles */
-        body {
-            font-family: 'Inter', 'Google Sans', sans-serif;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+        .modal-box {
+            transform: scale(0.95) translateY(10px);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        #modal.active .modal-box {
+            transform: scale(1) translateY(0);
         }
 
-        /* Custom box-shadow for the "manga panel" effect */
-        .manga-shadow {
-            box-shadow: 5px 5px 0px 0px rgba(0,0,0,1);
+        /* Hover Overlay for Landscape */
+        .work-hover-overlay {
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
-        .dark .manga-shadow {
-            box-shadow: 5px 5px 0px 0px var(--theme-blue);
-        }
-
-        /* Animation for cards appearing on load */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
+        /* Only apply hover effects on screens that support hover (non-touch/desktops) */
+        @media (hover: hover) and (pointer: fine) {
+            .group:hover .work-hover-overlay {
                 opacity: 1;
-                transform: translateY(0);
+            }
+            .group:hover img {
+                transform: scale(1.05);
             }
         }
-        .fade-in-up {
-            animation: fadeInUp 0.5s ease-out forwards;
-            opacity: 0; /* Start hidden */
+        
+        /* Custom Scrollbar for Info Area */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #d2d2d7;
+            border-radius: 10px;
         }
 
-        /* Style for the Material Symbols icon */
-        .material-symbols-outlined {
-          font-variation-settings:
-          'FILL' 0,
-          'wght' 400,
-          'GRAD' 0,
-          'opsz' 24
+        /* Hero Background Animations */
+        @keyframes slide-left {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
         }
+        @keyframes slide-right {
+            from { transform: translateX(-50%); }
+            to { transform: translateX(0); }
+        }
+        .track-left { animation: slide-left 60s linear infinite; }
+        .track-right { animation: slide-right 60s linear infinite; }
     </style>
 </head>
-<body class="bg-slate-100 dark:bg-black text-slate-900 dark:text-slate-100 transition-colors duration-500">
+<body class="antialiased">
 
-    <!-- Theme switcher button -->
-    <div class="fixed top-4 right-4 z-50">
-        <button id="theme-toggle" class="w-12 h-12 flex items-center justify-center bg-slate-200 dark:bg-slate-800 border border-slate-900 dark:border-slate-500 transition-all duration-300 hover:bg-slate-300 dark:hover:bg-slate-700 hover:scale-110">
-            <span class="material-symbols-outlined" id="theme-icon">light_mode</span>
-        </button>
+    <nav class="fixed top-0 w-full z-40 transition-all duration-300 bg-white/70 backdrop-blur-md border-b border-black/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-14">
+                <div class="flex-shrink-0">
+                    <a href="#home" class="text-base sm:text-lg font-semibold text-gray-900" aria-label="0M_P Official Site home">
+                        0M_P <span class="font-normal text-gray-500">OFFICIAL SITE</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">Home</a>
+                    <a href="#artist" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">Artist</a>
+                    <a href="#works" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">Works</a>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" onclick="toggleMenu()" class="text-gray-600 hover:text-gray-900 focus:outline-none" aria-label="Open navigation menu" aria-expanded="false">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden fixed top-14 w-full z-30 bg-white/70 backdrop-blur-md border-b border-gray-200 shadow-lg transition-all">
+        <div class="px-4 pt-2 pb-6 space-y-1 sm:px-3 flex flex-col text-sm">
+            <a href="#home" class="block px-3 py-3 text-gray-900 border-b border-gray-100" onclick="toggleMenu()">Home</a>
+            <a href="#artist" class="block px-3 py-3 text-gray-900 border-b border-gray-100" onclick="toggleMenu()">Artist</a>
+            <a href="#works" class="block px-3 py-3 text-gray-900" onclick="toggleMenu()">Works</a>
+        </div>
     </div>
 
-    <!-- Main container for all content -->
-    <main class="container mx-auto max-w-2xl p-4 sm:p-6 md:p-8">
-        <div class="space-y-8">
-            
-            <!-- Card 1: Profile -->
-            <section class="card-animate bg-white dark:bg-slate-900 border-2 border-slate-900 dark:border-slate-200 manga-shadow transition-all duration-500">
-                <div class="flex flex-col items-center text-center p-8">
-                    <img src="https://links.btm-m.site/avatar.png" alt="0M_P Avatar" class="w-28 h-28 object-cover border-2 border-slate-900 dark:border-slate-200" onerror="this.onerror=null;this.src='https://placehold.co/112x112/000000/FFFFFF?text=0M_P';">
-                    <h1 class="text-4xl font-black mt-4">0M_P</h1>
-                    <p class="mt-1 text-slate-600 dark:text-slate-400">VOCALOID Producer since 2017</p>
-                </div>
-            </section>
-
-            <!-- Card 2: New Release -->
-            <section class="card-animate bg-white dark:bg-slate-900 border-2 border-slate-900 dark:border-slate-200 manga-shadow transition-all duration-500">
-                <div class="p-6">
-                    <h2 class="text-xl font-bold text-center mb-4 border-b-2 border-slate-900 dark:border-slate-200 pb-2">NEW RELEASE</h2>
-                    <div class="space-y-6">
-                        <!-- Release Item 1 -->
-                        <a href="https://ep.0m-p.space/1st" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-4 group transition-transform duration-300 hover:scale-[1.02]">
-                            <img src="https://27.btm-m.site/SIC.png" alt="EP 'Echoes of Late Summer' Cover" class="w-24 h-24 object-cover border-2 border-slate-900 dark:border-slate-400 group-hover:border-[var(--theme-blue)] transition-colors duration-300" onerror="this.onerror=null;this.src='https://placehold.co/96x96/1e293b/FFFFFF?text=EoLS';">
-                            <div class="flex-1">
-                                <h3 class="font-bold text-lg group-hover:text-[var(--theme-blue)] transition-colors duration-300">Summer is Coming</h3>
-                                <p class="text-sm text-slate-500 dark:text-slate-400">Release Date : 2025-08-31</p>
-                            </div>
-                        </a>
-                        <!-- Release Item 2 -->
-                        <a href="AfterDream/" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-4 group transition-transform duration-300 hover:scale-[1.02]">
-                            <img src="https://links.btm-m.site/EoLS_Cover.png" alt="After Dream Cover" class="w-24 h-24 object-cover border-2 border-slate-900 dark:border-slate-400 group-hover:border-[var(--theme-blue)] transition-colors duration-300" onerror="this.onerror=null;this.src='https://placehold.co/96x96/1e293b/FFFFFF?text=AD';">
-                            <div class="flex-1">
-                                <h3 class="font-bold text-lg group-hover:text-[var(--theme-blue)] transition-colors duration-300">EP "夏末回音 Echoes of Late Summer</h3>
-                                <p class="text-sm text-slate-500 dark:text-slate-400">Release Date : 2025-08-31</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Card 3: Links -->
-            <section class="card-animate bg-white dark:bg-slate-900 border-2 border-slate-900 dark:border-slate-200 manga-shadow transition-all duration-500">
-                <div class="p-6">
-                    <h2 class="text-xl font-bold text-center mb-4 border-b-2 border-slate-900 dark:border-slate-200 pb-2">LINKS</h2>
-                    <div class="grid grid-cols-1 gap-3">
-                        <a href="https://www.0m-p.space/" target="_blank" rel="noopener noreferrer" class="link-button">Official Site</a>
-                        <a href="https://space.bilibili.com/168264291" target="_blank" rel="noopener noreferrer" class="link-button">bilibili</a>
-                        <a href="https://www.tunecore.co.jp/artists/0M_P" target="_blank" rel="noopener noreferrer" class="link-button">TuneCore Japan</a>
-                        <a href="https://youtube.com/@0M_P" target="_blank" rel="noopener noreferrer" class="link-button">YouTube Channel</a>
-                        <a href="https://music.apple.com/jp/artist/1699342983" target="_blank" rel="noopener noreferrer" class="link-button">Apple Music</a>
-                        <a href="https://open.spotify.com/artist/2xPheCv27oLtbyjb7TsXd0" target="_blank" rel="noopener noreferrer" class="link-button">Spotify</a>
-                        <a href="http://music.163.com/artist?id=36284273" target="_blank" rel="noopener noreferrer" class="link-button">网易云音乐</a>
-                        <a href="https://twitter.com/0M_P_39" target="_blank" rel="noopener noreferrer" class="link-button">X (Twitter)</a>
-                        <a href="mailto:coiko39@gmail.com" class="link-button">E-mail</a>
-                    </div>
-                </div>
-            </section>
-            
-            <!-- Card 4: Works -->
-            <section class="card-animate bg-white dark:bg-slate-900 border-2 border-slate-900 dark:border-slate-200 manga-shadow transition-all duration-500">
-                <div class="p-6">
-                    <h2 class="text-xl font-bold text-center mb-4 border-b-2 border-slate-900 dark:border-slate-200 pb-2">WORKS</h2>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                         <!-- Work Item 1 -->
-                        <a href="https://linkco.re/XThrYXSs" target="_blank" rel="noopener noreferrer" class="group transition-transform duration-300 hover:scale-105">
-                            <img src="https://links.btm-m.site/inner_Cover.png" alt="inner Cover" class="w-full h-auto object-cover border-2 border-slate-900 dark:border-slate-400 group-hover:border-[var(--theme-blue)] transition-colors duration-300" onerror="this.onerror=null;this.src='https://placehold.co/300x300/1e293b/FFFFFF?text=inner';">
-                            <h3 class="font-bold mt-2 text-center group-hover:text-[var(--theme-blue)] transition-colors duration-300">inner</h3>
-                        </a>
-                         <!-- Work Item 2 -->
-                        <a href="https://linkco.re/gHE8PnXa" target="_blank" rel="noopener noreferrer" class="group transition-transform duration-300 hover:scale-105">
-                            <img src="https://links.btm-m.site/YNR.jpg" alt="You Need - Reloaded Cover" class="w-full h-auto object-cover border-2 border-slate-900 dark:border-slate-400 group-hover:border-[var(--theme-blue)] transition-colors duration-300" onerror="this.onerror=null;this.src='https://placehold.co/300x300/1e293b/FFFFFF?text=YNR';">
-                            <h3 class="font-bold mt-2 text-center group-hover:text-[var(--theme-blue)] transition-colors duration-300">You Need - Reloaded</h3>
-                        </a>
-                    </div>
-                </div>
-            </section>
-
+    <header id="home" class="min-h-screen flex items-center justify-center pt-14 relative overflow-hidden bg-white">
+        <!-- Scrolling Background Container -->
+        <div id="hero-bg" class="absolute inset-0 z-0 flex flex-col justify-center gap-4 md:gap-6 opacity-70 blur-[8px] transform scale-[1.3] -rotate-6 pointer-events-none">
+            <!-- Tracks injected via JS -->
         </div>
+        <!-- White gradient overlay for clean text contrast -->
+        <div class="absolute inset-0 z-0 bg-white/60 bg-gradient-to-b from-white/40 to-white/80 pointer-events-none"></div>
 
-        <!-- Footer -->
-        <footer class="text-center text-sm text-slate-500 dark:text-slate-400 py-8">
-            <p>© 2025 0M_P. All rights reserved.</p>
-        </footer>
-    </main>
+        <div class="text-center z-10 px-4 relative">
+            <p class="text-xs sm:text-sm font-semibold text-gray-600 mb-5 slogan-text opacity-0 translate-y-4 transition-all duration-1000 ease-out">OFFICIAL SITE</p>
+            <h1 class="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold text-gray-900 slogan-text opacity-0 translate-y-4 transition-all duration-1000 ease-out">
+                0M_P
+            </h1>
+            <p class="mt-6 text-lg sm:text-xl md:text-2xl font-medium text-gray-700 slogan-text opacity-0 translate-y-4 transition-all duration-1000 ease-out">
+                Write the Thoughts, Sing for the Future.
+            </p>
+        </div>
+    </header>
+
+    <section id="artist" class="py-24 md:py-32 bg-white">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <div class="mb-8 flex justify-center">
+                <div class="w-32 h-32 md:w-40 md:h-40 overflow-hidden shadow-lg border border-gray-100">
+                    <img src="https://pro.btm-m.site/0m_avatar.png" alt="0M_P Avatar" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/400x400/eeeeee/86868b?text=0M_P'">
+                </div>
+            </div>
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-2">0M_P</h2>
+            <p class="text-sm font-medium tracking-widest text-gray-500 uppercase mb-6">VOCALOID Producer Since 2017</p>
+            
+            <!-- External Links Section -->
+            <div class="flex flex-wrap justify-center gap-4 md:gap-6 mb-10">
+                <a href="https://github.com/ColdP" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors flex items-center gap-1">
+                    GitHub
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                </a>
+                <a href="https://youtube.com/@0M_P" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors flex items-center gap-1">
+                    YouTube Channel
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                </a>
+                <a href="https://music.apple.com/jp/artist/1699342983" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors flex items-center gap-1">
+                    Apple Music
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                </a>
+                <a href="https://space.bilibili.com/168264291" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors flex items-center gap-1">
+                    bilibili Space
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                </a>
+            </div>
+
+            <div class="inline-block border-t border-gray-200 pt-6">
+                <p class="text-xs font-bold tracking-widest text-gray-400 mb-3">REPRESENTATIVE WORKS</p>
+                <p class="text-lg md:text-xl text-gray-800 font-medium">
+                    "You Need" &nbsp;/&nbsp; "inner" &nbsp;/&nbsp; "Summer is Coming"
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="works" class="py-12 md:py-24 bg-[#f5f5f7]">
+        <div class="max-w-[1600px] mx-auto">
+            <div class="text-center mb-12 md:mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Works</h2>
+            </div>
+            
+            <!-- Grid Layout -->
+            <div id="works-grid" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 md:gap-0 bg-white md:bg-transparent">
+                <!-- Works injected via JS -->
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-[#f5f5f7] py-12 border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <p class="text-xs text-gray-500">
+                &copy; 2026 0M_P / 0M Production ALL RIGHTS RESERVED.
+            </p>
+        </div>
+    </footer>
+
+    <div id="modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6" onclick="closeModal(event)">
+        <!-- Modal Content -->
+        <div class="modal-box bg-white w-full max-w-4xl flex flex-col md:flex-row overflow-y-auto md:overflow-hidden custom-scrollbar max-h-[85vh] lg:max-h-[90vh] rounded-2xl shadow-2xl relative" onclick="event.stopPropagation()">
+            <!-- Close Button -->
+            <button onclick="closeModal()" class="absolute top-4 right-4 z-20 w-8 h-8 flex items-center justify-center bg-gray-100/80 backdrop-blur-md rounded-full hover:bg-gray-200 transition-colors border border-black/5">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 1L13 13M1 13L13 1" stroke="#1d1d1f" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button>
+
+            <!-- Cover Area (Left) -->
+            <div class="w-full md:w-1/2 bg-gray-100 flex-shrink-0 relative aspect-square">
+                <img id="modal-cover" src="" alt="Album Cover" class="w-full h-full object-cover">
+            </div>
+
+            <!-- Info Area (Right) -->
+            <div class="w-full md:w-1/2 p-6 md:p-10 flex flex-col md:absolute md:right-0 md:top-0 md:bottom-0 md:overflow-y-auto custom-scrollbar bg-white">
+                <div>
+                    <p id="modal-type" class="text-xs font-semibold tracking-widest text-gray-500 uppercase mb-2"></p>
+                    <h3 id="modal-title" class="text-2xl md:text-3xl font-semibold text-gray-900 leading-tight mb-2"></h3>
+                    <p id="modal-artist" class="text-lg text-gray-600 mb-1"></p>
+                    <p id="modal-date" class="text-sm text-gray-400"></p>
+                </div>
+                
+                <hr class="border-gray-200 my-6">
+                
+                <div class="flex-1 flex flex-col">
+                    <p id="modal-track-count" class="text-xs font-semibold text-gray-500 mb-4 tracking-wider uppercase"></p>
+                    <ul id="modal-tracklist" class="space-y-3 text-sm text-gray-700 mb-4">
+                        <!-- Tracks injected here -->
+                    </ul>
+                    <p id="modal-copyright" class="text-[11px] text-gray-400 uppercase tracking-widest shrink-0 pt-2 mt-auto"></p>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script>
-        // --- Theme Toggling Logic ---
-        const themeToggle = document.getElementById('theme-toggle');
-        const themeIcon = document.getElementById('theme-icon');
-        const htmlEl = document.documentElement;
-
-        // Function to set theme
-        const setTheme = (theme) => {
-            if (theme === 'dark') {
-                htmlEl.classList.add('dark');
-                themeIcon.textContent = 'dark_mode';
-                localStorage.setItem('theme', 'dark');
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const button = document.getElementById('mobile-menu-btn');
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                button.setAttribute('aria-expanded', 'true');
             } else {
-                htmlEl.classList.remove('dark');
-                themeIcon.textContent = 'light_mode';
-                localStorage.setItem('theme', 'light');
+                menu.classList.add('hidden');
+                button.setAttribute('aria-expanded', 'false');
             }
-        };
-
-        // Event listener for the toggle button
-        themeToggle.addEventListener('click', () => {
-            const currentTheme = htmlEl.classList.contains('dark') ? 'dark' : 'light';
-            setTheme(currentTheme === 'dark' ? 'light' : 'dark');
-        });
-
-        // Initialize theme on page load
-        document.addEventListener('DOMContentLoaded', () => {
-            const savedTheme = localStorage.getItem('theme');
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            
-            if (savedTheme) {
-                setTheme(savedTheme);
-            } else {
-                // If no theme is saved, use the system preference. Default is light.
-                setTheme(prefersDark ? 'dark' : 'light');
-            }
-        });
-
-        // --- Staggered Animation Logic ---
-        document.addEventListener('DOMContentLoaded', () => {
-            const cards = document.querySelectorAll('.card-animate');
-            cards.forEach((card, index) => {
-                // Apply a delay to each card to create a staggered effect
-                card.style.animationDelay = `${index * 100}ms`;
-                card.classList.add('fade-in-up');
-            });
-        });
-        
-        // --- Tailwind CSS Configuration ---
-        tailwind.config = {
-            darkMode: 'class', // Enable class-based dark mode
-            theme: {
-                extend: {
-                    // You can extend the theme here if needed
-                }
-            },
-            plugins: [
-                function({ addComponents }) {
-                    addComponents({
-                        '.link-button': {
-                            '@apply w-full p-4 bg-slate-100 dark:bg-slate-800 border-2 border-slate-900 dark:border-slate-500 text-center font-bold transition-all duration-300': {},
-                            '&:hover': {
-                                '@apply bg-[var(--theme-blue)] text-white border-[var(--theme-blue)] dark:border-[var(--theme-blue)] -translate-y-1': {},
-                                'box-shadow': '0 5px 0 0 rgba(0,0,0,0.2)',
-                            },
-                        }
-                    })
-                }
-            ]
         }
-    </script>
 
+        // Works Data Array
+        const worksData = [
+            { type: 'SINGLE', title: 'You Need - Piano Edit', artist: '0M_P', date: '2026.05.20', cover: 'https://pro.btm-m.site/YouNeedPianoEdit.png', tracks: ['01 You Need - Piano Edit'] },
+            { type: 'SINGLE', title: 'Summer is Coming', artist: '0M_P', date: '2025.11.12', cover: 'https://pro.btm-m.site/SummerisComing.jpg', tracks: ['01 Summer is Coming'] },
+            { type: 'SINGLE', title: 'After Dream', artist: '0M_P', date: '2025.03.09', cover: 'https://pro.btm-m.site/AfterDream.jpg', tracks: ['01 After Dream'] },
+            { type: 'SINGLE', title: 'inner', artist: '0M_P', date: '2025.02.25', cover: 'https://pro.btm-m.site/inner.jpg', tracks: ['01 inner'] },
+            { type: 'SINGLE', title: 'You Need - Reloaded', artist: '0M_P', date: '2024.08.31', cover: 'https://pro.btm-m.site/YouNeedReloaded.jpg', tracks: ['01 You Need - Reloaded', '02 You Need - Reloaded (Instrumental)'] },
+            { type: 'SINGLE', title: 'Special Night', artist: '0M_P', date: '2024.07.27', cover: 'https://pro.btm-m.site/SpecialNight.jpg', tracks: ['01 Special Night'] },
+            { type: 'SINGLE', title: 'Good Night - Reloaded', artist: '0M_P', date: '2024.05.01', cover: 'https://pro.btm-m.site/GoodNightReloaded.jpg', tracks: ['01 Good Night - Reloaded'] },
+            { type: 'SINGLE', title: 'Dream - Reloaded', artist: '0M_P', date: '2023.07.27', cover: 'https://pro.btm-m.site/DreamReloaded.jpg', tracks: ['01 Dream - Reloaded'] },
+            { type: 'SINGLE', title: 'Melody', artist: '0M_P', date: '2022.06.11', cover: 'https://pro.btm-m.site/Melody.jpg', tracks: ['01 Melody', '02 Melody (Instrumental)'] },
+            { type: 'SINGLE', title: '晚安 Good Night', artist: '0M_P', date: '2022.02.07', cover: 'https://pro.btm-m.site/GoodNight.jpg', tracks: ['01 晚安 Good Night', '02 晚安 Good Night (AI Self Cover)', '03 晚安 Good Night (Instrumental)'] },
+            { type: 'EP', title: 'Just Find Your World ~Dream/The End/Love Letter~', artist: '0M_P', date: '2021.11.27', cover: 'https://pro.btm-m.site/JustFindYourWorld.jpg', tracks: ['01 梦 / Dream', '02 结尾 / The End', '03 告别信 / Love Letter', '04 梦 / Dream (Instrumental)', '05 结尾 / The End (Instrumental)', '06 告别信 / Love Letter (Instrumental)'] },
+            { type: 'SINGLE', title: 'SUMMER - 2021 Reloaded', artist: '0M_P', date: '2021.07.19', cover: 'https://pro.btm-m.site/SUMMER2021Reloaded.jpg', tracks: ['01 SUMMER- 2021 Reloaded', '02 SUMMER-2021 Reloaded (Instrumental)'] },
+            { type: 'SINGLE', title: 'No Title II', artist: '0M_P', date: '2020.10.03', cover: 'https://pro.btm-m.site/NoTitleII.jpg', tracks: ['01 No Title Ⅱ', '02 No Title Ⅱ (Instrumental)'] },
+            { type: 'SINGLE', title: '有你 You Need', artist: '0M_P', date: '2020.08.24', cover: 'https://pro.btm-m.site/YouNeed.jpg', tracks: ['01 有你 You Need'] },
+            { type: 'EP', title: 'See You Next', artist: '0M_P', date: '2020.08.11', cover: 'https://pro.btm-m.site/SeeYourNext.jpg', tracks: ['01 SUMMER -Reloaded-', '02 Sweet Tomorrow -Reloaded-', '03 NEXT NEXT -Reloaded-', '04 My Own VOCALOID ~Miku\'s Voice~'] }
+        ];
+
+        // Initialize Works Grid
+        function initWorks() {
+            const grid = document.getElementById('works-grid');
+            grid.innerHTML = '';
+            worksData.forEach((work, index) => {
+                const card = document.createElement('div');
+                card.className = `cursor-pointer relative group overflow-hidden bg-white md:bg-transparent`;
+                card.onclick = () => openModal(index);
+                
+                const isEven = index % 2 === 0;
+                const imgOrder = isEven ? 'order-1' : 'order-2';
+                const textOrder = isEven ? 'order-2' : 'order-1';
+
+                card.innerHTML = `
+                    <div class="hidden md:block w-full aspect-square relative">
+                        <img src="${work.cover}" alt="${work.title}" class="w-full h-full object-cover transition-transform duration-500 ease-out" onerror="this.src='https://placehold.co/400x400/eeeeee/86868b?text=${encodeURIComponent(work.title)}'">
+                        
+                        <div class="work-hover-overlay absolute inset-0 bg-black/70 backdrop-blur-sm flex flex-col justify-end p-6 z-10">
+                            <p class="text-[10px] font-bold tracking-widest text-gray-300 mb-1 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">${work.type}</p>
+                            <h4 class="text-xl font-semibold text-white mb-1 leading-tight transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300 delay-75">${work.title}</h4>
+                            <p class="text-sm text-gray-300 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300 delay-100">${work.artist} &middot; ${work.date}</p>
+                        </div>
+                    </div>
+
+                    <div class="md:hidden flex w-full">
+                        <div class="w-1/2 flex-shrink-0 ${imgOrder} bg-gray-100 aspect-square">
+                             <img src="${work.cover}" alt="${work.title}" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/400x400/eeeeee/86868b?text=${encodeURIComponent(work.title)}'">
+                        </div>
+                        <div class="w-1/2 px-4 sm:px-6 py-4 flex flex-col justify-center ${textOrder}">
+                            <p class="text-[clamp(10px,2.5vw,12px)] font-bold tracking-widest text-gray-500 mb-1 sm:mb-2">${work.type}</p>
+                            <h4 class="text-[clamp(15px,4.5vw,22px)] font-semibold text-gray-900 mb-1 sm:mb-2 leading-tight line-clamp-2">${work.title}</h4>
+                            <p class="text-[clamp(12px,3.5vw,16px)] text-gray-600">${work.artist}</p>
+                            <p class="text-[clamp(10px,3vw,14px)] text-gray-400 mt-2">${work.date}</p>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Initialize Hero Background
+        function initHeroBackground() {
+            const heroBg = document.getElementById('hero-bg');
+            if (!heroBg) return;
+
+            const images = worksData.map(work => work.cover);
+            
+            for (let i = 0; i < 4; i++) {
+                const track = document.createElement('div');
+                track.className = `flex w-max gap-4 md:gap-6 ${i % 2 === 0 ? 'track-left' : 'track-right'}`;
+                
+                let shuffled = [...images].sort(() => 0.5 - Math.random());
+                let repeated = [...shuffled, ...shuffled, ...shuffled];
+                
+                let imgsHtml = repeated.map(src => `<img src="${src}" class="w-32 h-32 md:w-48 md:h-48 object-cover rounded-xl md:rounded-2xl shadow-md" alt="" onerror="this.style.display='none'">`).join('');
+                
+                track.innerHTML = imgsHtml + imgsHtml;
+                heroBg.appendChild(track);
+            }
+        }
+
+        // Modal Logic
+        function openModal(index) {
+            const work = worksData[index];
+            const modal = document.getElementById('modal');
+            const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+            
+            document.getElementById('modal-cover').src = work.cover;
+            document.getElementById('modal-type').textContent = work.type;
+            document.getElementById('modal-title').textContent = work.title;
+            document.getElementById('modal-artist').textContent = work.artist;
+            document.getElementById('modal-date').textContent = work.date;
+            
+            const trackCount = work.tracks.length;
+            document.getElementById('modal-track-count').textContent = `${trackCount} Track${trackCount > 1 ? 's' : ''}`;
+            
+            const tracklistEl = document.getElementById('modal-tracklist');
+            tracklistEl.innerHTML = '';
+            work.tracks.forEach(track => {
+                const li = document.createElement('li');
+                li.className = 'flex items-start';
+                const match = track.match(/^(\d+)\s+(.*)$/);
+                if(match) {
+                    li.innerHTML = `<span class="text-gray-400 w-6 font-medium tracking-wide shrink-0">${match[1]}</span> <span>${match[2]}</span>`;
+                } else {
+                    li.textContent = track;
+                }
+                tracklistEl.appendChild(li);
+            });
+
+            const releaseYear = work.date ? work.date.split('.')[0] : new Date().getFullYear();
+            document.getElementById('modal-copyright').textContent = `℗ ${releaseYear} 0M_P / 0M Production`;
+
+            document.getElementById('modal-cover').onerror = function() {
+                this.src = `https://placehold.co/800x800/eeeeee/86868b?text=${encodeURIComponent(work.title)}`;
+            };
+
+            document.body.style.overflow = 'hidden';
+            document.body.style.paddingRight = `${scrollbarWidth}px`;
+            document.querySelector('nav').style.paddingRight = `${scrollbarWidth}px`;
+
+            document.querySelector('.modal-box').scrollTop = 0;
+
+            modal.classList.add('active');
+        }
+
+        function closeModal(event) {
+            if (event && event.target !== document.getElementById('modal')) return;
+            
+            const modal = document.getElementById('modal');
+            modal.classList.remove('active');
+            
+            setTimeout(() => {
+                document.body.style.overflow = '';
+                document.body.style.paddingRight = '';
+                document.querySelector('nav').style.paddingRight = '';
+            }, 300);
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && document.getElementById('modal').classList.contains('active')) {
+                closeModal();
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initWorks();
+            initHeroBackground();
+            
+            setTimeout(() => {
+                document.querySelectorAll('.slogan-text').forEach((element, index) => {
+                    setTimeout(() => element.classList.remove('opacity-0', 'translate-y-4'), index * 100);
+                });
+            }, 100);
+        });
+    </script>
 </body>
 </html>
