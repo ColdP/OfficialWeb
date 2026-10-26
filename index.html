@@ -10,6 +10,7 @@
     <meta property="og:title" content="0M_P OFFICIAL SITE">
     <meta property="og:description" content="The official website of VOCALOID producer 0M_P.">
     <meta property="og:image" content="0m_avatar.png">
+    <link rel="stylesheet" href="liquid-glass.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* Typography Definition */
@@ -21,6 +22,62 @@
             color: #1d1d1f;
             background-color: #ffffff;
             -webkit-font-smoothing: antialiased;
+        }
+
+        /* Animated floating mobile navigation */
+        #mobile-menu {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transform: translateX(-50%) translateY(-8px) scale(0.96);
+            filter: blur(10px);
+            transition: opacity 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+                        transform 0.42s cubic-bezier(0.22, 1, 0.36, 1),
+                        filter 0.32s ease, visibility 0.32s;
+        }
+        #mobile-menu.active {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transform: translateX(-50%) translateY(0) scale(1);
+            filter: blur(0);
+        }
+
+        /* 60% continuous-curvature corners with standard-radius fallbacks */
+        .floating-surface,
+        #mobile-menu {
+            --corner-smoothing: 60%;
+            corner-shape: superellipse(1.6);
+        }
+
+        .floating-surface {
+            border-radius: 9999px;
+        }
+
+        /* Low-strength fallback while Liquid Glass prepares its live material map. */
+        .floating-surface,
+        #mobile-menu {
+            background: rgba(255, 255, 255, 0.18);
+            -webkit-backdrop-filter: blur(4px);
+            backdrop-filter: blur(4px);
+        }
+
+        #liquid-glass-scene {
+            position: fixed;
+            inset: 0;
+            height: 100dvh;
+            overflow: hidden;
+        }
+
+        #page-content.lg-content[data-layout="scroll"] {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            min-height: 0;
+            overflow: auto;
+            overscroll-behavior-y: contain;
+            -webkit-overflow-scrolling: touch;
         }
 
         /* Apple-like Modal Blur Transition */
@@ -86,8 +143,9 @@
     </style>
 </head>
 <body class="antialiased">
+<div id="liquid-glass-scene" class="lg-scene">
 
-    <nav class="fixed top-0 w-full z-40 transition-all duration-300 bg-white/70 backdrop-blur-md border-b border-black/5">
+    <nav class="floating-surface lg-surface fixed top-4 left-1/2 -translate-x-1/2 w-[calc(100%_-_2rem)] max-w-5xl z-40 rounded-full border border-black/5 shadow-lg transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-14">
                 <div class="flex-shrink-0">
@@ -114,15 +172,16 @@
     </nav>
     
     <!-- Mobile Menu -->
-    <div id="mobile-menu" class="hidden md:hidden fixed top-14 w-full z-30 bg-white/70 backdrop-blur-md border-b border-gray-200 shadow-lg transition-all">
-        <div class="px-4 pt-2 pb-6 space-y-1 sm:px-3 flex flex-col text-sm">
-            <a href="#home" class="block px-3 py-3 text-gray-900 border-b border-gray-100" onclick="toggleMenu()">Home</a>
-            <a href="#artist" class="block px-3 py-3 text-gray-900 border-b border-gray-100" onclick="toggleMenu()">Artist</a>
-            <a href="#music" class="block px-3 py-3 text-gray-900 border-b border-gray-100" onclick="toggleMenu()">Music</a>
+    <div id="mobile-menu" class="lg-surface md:hidden fixed top-20 left-1/2 -translate-x-1/2 w-[calc(100%_-_2rem)] max-w-5xl z-30 overflow-hidden rounded-[2.5rem] border border-black/5 shadow-lg">
+        <div class="px-4 py-4 space-y-1 sm:px-3 flex flex-col text-sm">
+            <a href="#home" class="block px-3 py-3 text-gray-900" onclick="toggleMenu()">Home</a>
+            <a href="#artist" class="block px-3 py-3 text-gray-900" onclick="toggleMenu()">Artist</a>
+            <a href="#music" class="block px-3 py-3 text-gray-900" onclick="toggleMenu()">Music</a>
             <a href="#development" class="block px-3 py-3 text-gray-900" onclick="toggleMenu()">Development</a>
         </div>
     </div>
 
+    <main id="page-content" class="lg-content" data-layout="scroll">
     <header id="home" class="min-h-screen flex items-center justify-center pt-14 relative overflow-hidden bg-white">
         <!-- Scrolling Background Container -->
         <div id="hero-bg" class="absolute inset-0 z-0 flex flex-col justify-center gap-4 md:gap-6 opacity-70 blur-[8px] transform scale-[1.3] -rotate-6 pointer-events-none">
@@ -210,6 +269,8 @@
         </div>
     </footer>
 
+    </main>
+
     <div id="modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6" onclick="closeModal(event)">
         <!-- Modal Content -->
         <div class="modal-box bg-white w-full max-w-4xl flex flex-col md:flex-row overflow-y-auto md:overflow-hidden custom-scrollbar max-h-[85vh] lg:max-h-[90vh] rounded-2xl shadow-2xl relative" onclick="event.stopPropagation()">
@@ -246,19 +307,16 @@
             </div>
         </div>
     </div>
+</div>
 
+    <script src="liquid-glass.js"></script>
     <script>
         // Mobile Menu Toggle
         function toggleMenu() {
             const menu = document.getElementById('mobile-menu');
             const button = document.getElementById('mobile-menu-btn');
-            if (menu.classList.contains('hidden')) {
-                menu.classList.remove('hidden');
-                button.setAttribute('aria-expanded', 'true');
-            } else {
-                menu.classList.add('hidden');
-                button.setAttribute('aria-expanded', 'false');
-            }
+            const isOpen = menu.classList.toggle('active');
+            button.setAttribute('aria-expanded', String(isOpen));
         }
 
         // Works Data Array
@@ -412,6 +470,7 @@
 
             document.body.style.overflow = 'hidden';
             document.body.style.paddingRight = `${scrollbarWidth}px`;
+            document.getElementById('page-content').style.overflow = 'hidden';
             document.querySelector('nav').style.paddingRight = `${scrollbarWidth}px`;
 
             document.querySelector('.modal-box').scrollTop = 0;
@@ -428,6 +487,7 @@
             setTimeout(() => {
                 document.body.style.overflow = '';
                 document.body.style.paddingRight = '';
+                document.getElementById('page-content').style.overflow = 'auto';
                 document.querySelector('nav').style.paddingRight = '';
             }, 300);
         }

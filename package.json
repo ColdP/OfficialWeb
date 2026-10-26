@@ -1,0 +1,26 @@
+{
+  "name": "0m_p-official-site",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build:glass": "esbuild src/liquid-glass.js --bundle --format=iife --outfile=liquid-glass.js --minify --loader:.css=css",
+    "test": "node -e \"console.log('No automated tests configured')\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ColdP/OfficialWeb.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/ColdP/OfficialWeb/issues"
+  },
+  "homepage": "https://github.com/ColdP/OfficialWeb#readme",
+  "dependencies": {
+    "@glass-sdk/liquid-glass": "0.0.2",
+    "esbuild": "0.28.2"
+  }
+}
