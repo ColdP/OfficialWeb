@@ -9,7 +9,7 @@
     <meta property="og:type" content="website">
     <meta property="og:title" content="0M_P OFFICIAL SITE">
     <meta property="og:description" content="The official website of VOCALOID producer 0M_P.">
-    <meta property="og:image" content="https://coldp.github.io/OfficialWeb/0m_avatar.png">
+    <meta property="og:image" content="0m_avatar.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* Typography Definition */
@@ -98,7 +98,8 @@
                 <div class="hidden md:flex space-x-8">
                     <a href="#home" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">Home</a>
                     <a href="#artist" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">Artist</a>
-                    <a href="#works" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">Works</a>
+                    <a href="#music" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">Music</a>
+                    <a href="#development" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">Development</a>
                 </div>
                 <!-- Mobile menu button -->
                 <div class="md:hidden flex items-center">
@@ -117,7 +118,8 @@
         <div class="px-4 pt-2 pb-6 space-y-1 sm:px-3 flex flex-col text-sm">
             <a href="#home" class="block px-3 py-3 text-gray-900 border-b border-gray-100" onclick="toggleMenu()">Home</a>
             <a href="#artist" class="block px-3 py-3 text-gray-900 border-b border-gray-100" onclick="toggleMenu()">Artist</a>
-            <a href="#works" class="block px-3 py-3 text-gray-900" onclick="toggleMenu()">Works</a>
+            <a href="#music" class="block px-3 py-3 text-gray-900 border-b border-gray-100" onclick="toggleMenu()">Music</a>
+            <a href="#development" class="block px-3 py-3 text-gray-900" onclick="toggleMenu()">Development</a>
         </div>
     </div>
 
@@ -144,7 +146,7 @@
         <div class="max-w-4xl mx-auto px-6 text-center">
             <div class="mb-8 flex justify-center">
                 <div class="w-32 h-32 md:w-40 md:h-40 overflow-hidden shadow-lg border border-gray-100">
-                    <img src="https://coldp.github.io/OfficialWeb/0m_avatar.png" alt="0M_P Avatar" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/400x400/eeeeee/86868b?text=0M_P'">
+                    <img src="0m_avatar.png" alt="0M_P Avatar" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/400x400/eeeeee/86868b?text=0M_P'">
                 </div>
             </div>
             <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-2">0M_P</h2>
@@ -181,13 +183,21 @@
 
     <section id="works" class="py-12 md:py-24 bg-[#f5f5f7]">
         <div class="max-w-[1600px] mx-auto">
-            <div class="text-center mb-12 md:mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Works</h2>
+            <div id="music" class="text-center mb-12 md:mb-16 scroll-mt-20">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900">MUSIC</h2>
             </div>
             
             <!-- Grid Layout -->
             <div id="works-grid" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 md:gap-0 bg-white md:bg-transparent">
                 <!-- Works injected via JS -->
+            </div>
+
+            <div id="development" class="text-center mt-20 md:mt-28 mb-10 md:mb-14 scroll-mt-20">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900">DEVELOPMENT</h2>
+            </div>
+
+            <div id="development-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6 px-4 md:px-6">
+                <!-- Development projects injected via JS -->
             </div>
         </div>
     </section>
@@ -253,21 +263,36 @@
 
         // Works Data Array
         const worksData = [
-            { type: 'SINGLE', title: 'You Need - Piano Edit', artist: '0M_P', date: '2026.05.20', cover: 'https://coldp.github.io/OfficialWeb/YouNeedPianoEdit.png', tracks: ['01 You Need - Piano Edit'] },
-            { type: 'SINGLE', title: 'Summer is Coming', artist: '0M_P', date: '2025.11.12', cover: 'https://coldp.github.io/OfficialWeb/SummerisComing.jpg', tracks: ['01 Summer is Coming'] },
-            { type: 'SINGLE', title: 'After Dream', artist: '0M_P', date: '2025.03.09', cover: 'https://coldp.github.io/OfficialWeb/AfterDream.jpg', tracks: ['01 After Dream'] },
-            { type: 'SINGLE', title: 'inner', artist: '0M_P', date: '2025.02.25', cover: 'https://coldp.github.io/OfficialWeb/inner.jpg', tracks: ['01 inner'] },
-            { type: 'SINGLE', title: 'You Need - Reloaded', artist: '0M_P', date: '2024.08.31', cover: 'https://coldp.github.io/OfficialWeb/YouNeedReloaded.jpg', tracks: ['01 You Need - Reloaded', '02 You Need - Reloaded (Instrumental)'] },
-            { type: 'SINGLE', title: 'Special Night', artist: '0M_P', date: '2024.07.27', cover: 'https://coldp.github.io/OfficialWeb/SpecialNight.jpg', tracks: ['01 Special Night'] },
-            { type: 'SINGLE', title: 'Good Night - Reloaded', artist: '0M_P', date: '2024.05.01', cover: 'https://coldp.github.io/OfficialWeb/GoodNightReloaded.jpg', tracks: ['01 Good Night - Reloaded'] },
-            { type: 'SINGLE', title: 'Dream - Reloaded', artist: '0M_P', date: '2023.07.27', cover: 'https://coldp.github.io/OfficialWeb/DreamReloaded.jpg', tracks: ['01 Dream - Reloaded'] },
-            { type: 'SINGLE', title: 'Melody', artist: '0M_P', date: '2022.06.11', cover: 'https://coldp.github.io/OfficialWeb/Melody.jpg', tracks: ['01 Melody', '02 Melody (Instrumental)'] },
-            { type: 'SINGLE', title: '晚安 Good Night', artist: '0M_P', date: '2022.02.07', cover: 'https://coldp.github.io/OfficialWeb/GoodNight.jpg', tracks: ['01 晚安 Good Night', '02 晚安 Good Night (AI Self Cover)', '03 晚安 Good Night (Instrumental)'] },
-            { type: 'EP', title: 'Just Find Your World ~Dream/The End/Love Letter~', artist: '0M_P', date: '2021.11.27', cover: 'https://coldp.github.io/OfficialWeb/JustFindYourWorld.jpg', tracks: ['01 梦 / Dream', '02 结尾 / The End', '03 告别信 / Love Letter', '04 梦 / Dream (Instrumental)', '05 结尾 / The End (Instrumental)', '06 告别信 / Love Letter (Instrumental)'] },
-            { type: 'SINGLE', title: 'SUMMER - 2021 Reloaded', artist: '0M_P', date: '2021.07.19', cover: 'https://coldp.github.io/OfficialWeb/SUMMER2021Reloaded.jpg', tracks: ['01 SUMMER- 2021 Reloaded', '02 SUMMER-2021 Reloaded (Instrumental)'] },
-            { type: 'SINGLE', title: 'No Title II', artist: '0M_P', date: '2020.10.03', cover: 'https://coldp.github.io/OfficialWeb/NoTitleII.jpg', tracks: ['01 No Title Ⅱ', '02 No Title Ⅱ (Instrumental)'] },
-            { type: 'SINGLE', title: '有你 You Need', artist: '0M_P', date: '2020.08.24', cover: 'https://coldp.github.io/OfficialWeb/YouNeed.jpg', tracks: ['01 有你 You Need'] },
-            { type: 'EP', title: 'See You Next', artist: '0M_P', date: '2020.08.11', cover: 'https://coldp.github.io/OfficialWeb/SeeYourNext.jpg', tracks: ['01 SUMMER -Reloaded-', '02 Sweet Tomorrow -Reloaded-', '03 NEXT NEXT -Reloaded-', '04 My Own VOCALOID ~Miku\'s Voice~'] }
+            { type: 'SINGLE', title: 'You Need - Piano Edit', artist: '0M_P', date: '2026.05.20', cover: 'YouNeedPianoEdit.png', tracks: ['01 You Need - Piano Edit'] },
+            { type: 'SINGLE', title: 'Summer is Coming', artist: '0M_P', date: '2025.11.12', cover: 'SummerisComing.jpg', tracks: ['01 Summer is Coming'] },
+            { type: 'SINGLE', title: 'After Dream', artist: '0M_P', date: '2025.03.09', cover: 'AfterDream.jpg', tracks: ['01 After Dream'] },
+            { type: 'SINGLE', title: 'inner', artist: '0M_P', date: '2025.02.25', cover: 'inner.jpg', tracks: ['01 inner'] },
+            { type: 'SINGLE', title: 'You Need - Reloaded', artist: '0M_P', date: '2024.08.31', cover: 'YouNeedReloaded.jpg', tracks: ['01 You Need - Reloaded', '02 You Need - Reloaded (Instrumental)'] },
+            { type: 'SINGLE', title: 'Special Night', artist: '0M_P', date: '2024.07.27', cover: 'SpecialNight.jpg', tracks: ['01 Special Night'] },
+            { type: 'SINGLE', title: 'Good Night - Reloaded', artist: '0M_P', date: '2024.05.01', cover: 'GoodNightReloaded.jpg', tracks: ['01 Good Night - Reloaded'] },
+            { type: 'SINGLE', title: 'Dream - Reloaded', artist: '0M_P', date: '2023.07.27', cover: 'DreamReloaded.jpg', tracks: ['01 Dream - Reloaded'] },
+            { type: 'SINGLE', title: 'Melody', artist: '0M_P', date: '2022.06.11', cover: 'Melody.jpg', tracks: ['01 Melody', '02 Melody (Instrumental)'] },
+            { type: 'SINGLE', title: '晚安 Good Night', artist: '0M_P', date: '2022.02.07', cover: 'GoodNight.jpg', tracks: ['01 晚安 Good Night', '02 晚安 Good Night (AI Self Cover)', '03 晚安 Good Night (Instrumental)'] },
+            { type: 'EP', title: 'Just Find Your World ~Dream/The End/Love Letter~', artist: '0M_P', date: '2021.11.27', cover: 'JustFindYourWorld.jpg', tracks: ['01 梦 / Dream', '02 结尾 / The End', '03 告别信 / Love Letter', '04 梦 / Dream (Instrumental)', '05 结尾 / The End (Instrumental)', '06 告别信 / Love Letter (Instrumental)'] },
+            { type: 'SINGLE', title: 'SUMMER - 2021 Reloaded', artist: '0M_P', date: '2021.07.19', cover: 'SUMMER2021Reloaded.jpg', tracks: ['01 SUMMER- 2021 Reloaded', '02 SUMMER-2021 Reloaded (Instrumental)'] },
+            { type: 'SINGLE', title: 'No Title II', artist: '0M_P', date: '2020.10.03', cover: 'NoTitleII.jpg', tracks: ['01 No Title Ⅱ', '02 No Title Ⅱ (Instrumental)'] },
+            { type: 'SINGLE', title: '有你 You Need', artist: '0M_P', date: '2020.08.24', cover: 'YouNeed.jpg', tracks: ['01 有你 You Need'] },
+            { type: 'EP', title: 'See You Next', artist: '0M_P', date: '2020.08.11', cover: 'SeeYourNext.jpg', tracks: ['01 SUMMER -Reloaded-', '02 Sweet Tomorrow -Reloaded-', '03 NEXT NEXT -Reloaded-', '04 My Own VOCALOID ~Miku\'s Voice~'] }
+        ];
+
+        const developmentData = [
+            {
+                title: 'HyperChanger',
+                cover: 'ic_hyperchanger.png',
+                description: 'LSPosed module for Xiaomi HyperOS 4 customization. Tweak Control Center, System UI, Lock Screen, and Camera on rooted devices.',
+                url: 'https://github.com/ColdP/HyperChanger'
+            },
+            {
+                title: 'Today Wallpaper',
+                cover: 'ic_todaywallpaper.png',
+                description: 'A calendar-style immersive wallpaper app built with Jetpack Compose + Kotlin',
+                url: 'https://github.com/ColdP/TodayWallpaper'
+            }
         ];
 
         // Initialize Works Grid
@@ -308,6 +333,24 @@
                 `;
                 grid.appendChild(card);
             });
+        }
+
+        // Initialize Development Projects
+        function initDevelopment() {
+            const grid = document.getElementById('development-grid');
+            if (!grid) return;
+
+            grid.innerHTML = developmentData.map(project => `
+                <a href="${project.url}" target="_blank" rel="noopener noreferrer" class="group flex flex-col sm:flex-row gap-5">
+                    <img src="${project.cover}" alt="${project.title}" class="w-32 h-32 sm:w-36 sm:h-36 md:w-44 md:h-44 flex-shrink-0 object-cover drop-shadow-md transition-transform duration-500 ease-out group-hover:scale-105" onerror="this.src='https://placehold.co/400x400/eeeeee/86868b?text=${encodeURIComponent(project.title)}'">
+                    <div class="flex flex-col justify-center">
+                        <p class="text-xs font-bold tracking-widest text-gray-400 uppercase mb-2">GitHub Project</p>
+                        <h3 class="text-xl md:text-2xl font-semibold text-gray-900 mb-2">${project.title}</h3>
+                        <p class="text-sm md:text-base leading-relaxed text-gray-600">${project.description}</p>
+                        <span class="mt-4 text-sm font-medium text-gray-900">View on GitHub <span aria-hidden="true">↗</span></span>
+                    </div>
+                </a>
+            `).join('');
         }
 
         // Initialize Hero Background
@@ -397,6 +440,7 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             initWorks();
+            initDevelopment();
             initHeroBackground();
             
             setTimeout(() => {
